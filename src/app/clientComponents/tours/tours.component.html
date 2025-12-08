@@ -1,0 +1,192 @@
+<section class="category-hero">
+    <div class="full-image-box">
+      <img src="../../../assets/images/category.jpg" alt="Tour Category" />
+  
+      <!-- Dark Overlay -->
+      <div class="overlay"></div>
+  
+      <!-- Floating Content -->
+      <div class="overlay-content">
+        <h1 class="title">Explore Our Tour Categories</h1>
+        <p class="desc">
+          Find the perfect category that matches your travel style and adventure spirit.
+        </p>
+      
+        <a class="cta-btn">Discover More</a>
+      </div>
+      
+  
+      <!-- Bottom Scroll Indicator -->
+      <div class="scroll-indicator">
+        <span class="line"></span>
+        <p>Scroll</p>
+      </div>
+  
+    </div>
+  </section>
+  
+@if(AllToursList()){
+
+  <section id="tours" class="tours-section py-5">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-header text-center mb-5">
+        <h2 class="section-title">Amazing Tour Packages</h2>
+        <p class="section-subtitle">Discover our carefully curated tour packages for unforgettable adventures</p>
+        
+        <!-- Filter Tabs -->
+        <div class="filter-tabs d-flex justify-content-center flex-wrap gap-3 mt-4">
+          <button class="filter-btn active">All Tours</button>
+          <button class="filter-btn">Adventure</button>
+          <button class="filter-btn">Cultural</button>
+          <button class="filter-btn">Beach</button>
+          <button class="filter-btn">Luxury</button>
+        </div>
+      </div>
+  
+      <!-- Search and Sort Bar -->
+      <div class="search-sort-bar mb-4">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input 
+                type="text" 
+                placeholder="Search tours by title, destination, or description..." 
+                class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <div class="sort-options">
+              <span class="sort-label">Sort by:</span>
+              <select class="form-select sort-select">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="duration">Duration</option>
+                <option value="newest">Newest First</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Tours Grid -->
+      <div class="row g-4">
+        @for (tour of AllToursList(); track tour.id) {
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="tour-card shadow-sm border-0 rounded-4" 
+                 [class.inactive]="!tour.isActive">
+              
+              <!-- Tour Image with Overlays -->
+              <div class="tour-img position-relative overflow-hidden" [routerLink]="['/tourDetail', tour.id]">
+                <img 
+                  [src]="tour.imageCover" 
+                  [alt]="tour.title" 
+                  class="w-100"
+                  />
+                
+                <!-- Inactive Overlay -->
+                @if (!tour.isActive) {
+                  <div class="inactive-overlay">
+                    <span class="inactive-text">Currently Unavailable</span>
+                  </div>
+                }
+                
+                <!-- Tour Badges -->
+                <div class="tour-badges">
+                  <span class="destination-badge">{{tour.destinationName}}</span>
+                  <span class="category-badge">{{tour.categoryName}}</span>
+                
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                  <button class="action-btn wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="action-btn share-btn">
+                    <i class="fas fa-share-alt"></i>
+                  </button>
+                </div>
+                
+                <!-- Tour Duration -->
+                <div class="tour-duration">
+                  <i class="fas fa-clock"></i>
+                  <span>{{tour.duration}} Days</span>
+                </div>
+              </div>
+  
+              <!-- Tour Content -->
+              <div class="card-body">
+                <!-- Tour Title -->
+                <h5 class="tour-title">{{tour.title}}</h5>
+                
+                <!-- Tour Description -->
+                <p class="tour-desc">
+                  {{ (tour.description.length > 80) ? (tour.description ) + '...' : tour.description }}
+                </p>
+                
+                <!-- Tour Details -->
+                <div class="tour-details">
+                  <div class="detail-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>{{tour.startLocation}} → {{tour.endLocation}}</span>
+                  </div>
+                  <div class="detail-item">
+                    <i class="fas fa-language"></i>
+                    <span>{{tour.languageOptions}}</span>
+                  </div>
+                  <div class="detail-item">
+                    <i class="fas fa-user"></i>
+                    <span>Guide: {{tour.languageOptions}}</span>
+                  </div>
+                </div>
+                
+                <!-- Price Section -->
+                <div class="price-section">
+                  <div class="price-main">
+                    <span class="price-amount">${{tour.price}}</span>
+                    <span class="price-period">per person</span>
+                  </div>
+                  <div class="price-details">
+                    <span class="price-includes">All inclusive</span>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Footer Actions -->
+              <div class="card-footer bg-white border-0">
+                <div class="d-flex justify-content-between align-items-center">
+                  <button 
+                    class="btn btn-outline-primary btn-details"  [routerLink]="['/tourDetail', tour.id]"
+                    [disabled]="!tour.isActive">
+                    <i class="fas fa-info-circle"></i> Details
+                  </button>
+                  <button 
+                    class="btn btn-success btn-book" 
+                    [disabled]="!tour.isActive">
+                    <i class="fas fa-calendar-check"></i> {{tour.isActive ? 'Book Now' : 'Unavailable'}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+     @empty { 
+        <div class="col-12 text-center py-5">
+    <div class="empty-state">
+      <i class="fas fa-map-marked-alt fa-3x mb-3 text-muted"></i>
+      <h4 class="text-muted">No tours available</h4>
+      <p class="text-muted">Check back later for new tour packages</p>
+    </div>
+
+        </div>
+    }
+        
+  
+   
+    </div>
+    </div>
+  </section>
+}

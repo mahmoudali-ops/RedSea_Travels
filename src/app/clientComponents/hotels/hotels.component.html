@@ -1,0 +1,153 @@
+<section class="hotel-hero">
+  
+    <div class="full-image-box">
+      <img src="../../../assets/images/hotel.jpg" alt="Hotel Image" />
+  
+      <!-- Dark overlay -->
+      <div class="overlay"></div>
+  
+      <!-- Text over image -->
+      <div class="overlay-content">
+        <h2 class="title">Enjoy Your Stay</h2>
+        <p class="desc">
+          Discover luxury rooms, top-rated service, and unforgettable experiences.
+        </p>
+      </div>
+    </div>
+  
+  </section>
+  
+@if(AllHotelsList()){
+    
+  <section id="hotels" class="hotels-section py-5">
+    <div class="container">
+      <!-- Enhanced Header -->
+      <div class="section-header text-center mb-5">
+        <h2 class="section-title">Premium Hotels Collection</h2>
+        <p class="section-subtitle">Discover our handpicked selection of luxury hotels for an unforgettable stay</p>
+        
+        <!-- Filter Tabs -->
+        <div class="filter-tabs d-flex justify-content-center flex-wrap gap-3 mt-4">
+          <button class="filter-btn active" data-filter="all">All Hotels</button>
+          <button class="filter-btn" data-filter="luxury">Luxury</button>
+          <button class="filter-btn" data-filter="beach">Beach Resorts</button>
+          <button class="filter-btn" data-filter="city">City Center</button>
+          <button class="filter-btn" data-filter="boutique">Boutique</button>
+        </div>
+      </div>
+  
+      <!-- Search and Sort Bar -->
+      <div class="search-sort-bar mb-4">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Search hotels by name or location..." class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <div class="sort-options">
+              <span class="sort-label">Sort by:</span>
+              <select class="form-select sort-select">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Guest Rating</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Hotels Grid -->
+      <div class="row g-4">
+        @for (hotel of AllHotelsList(); track hotel.id) {
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="hotel-card shadow-sm border-0 rounded-4">
+              
+              <!-- Hotel Image with Overlays -->
+              <div class="hotel-img position-relative overflow-hidden">
+                <img [src]="hotel.imageCover" [alt]="hotel.names" class="w-100" />
+                
+                <!-- Top Badges -->
+                <div class="hotel-badges">
+                  <span class="destination-badge">{{hotel.destinationName}}</span>
+               
+                  
+                </div>
+                
+                <!-- Quick Actions Overlay -->
+                <div class="quick-actions">
+                  <button class="action-btn wishlist-btn ">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button class="action-btn view-btn" >
+                    <i class="far fa-eye"></i>
+                  </button>
+                </div>
+                
+                <!-- Rating -->
+                <div class="hotel-rating">
+                  <div class="stars">
+                    @for (star of [1,2,3,4,5]; track star) {
+                      <i class="fas fa-star" ></i>
+                    }
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Hotel Content -->
+              <div class="card-body">
+              
+                
+                <h5 class="hotel-title">{{hotel.names}}</h5>
+                
+                <p class="hotel-desc">
+                  {{ hotel.descriptions }}...
+                </p>
+                
+              
+                
+                <!-- Location -->
+                <div class="location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>{{hotel.destinationName}}</span>
+                </div>
+              </div>
+  
+              <!-- Footer Actions -->
+              <div class="card-footer bg-white border-0">
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn btn-outline-primary btn-details " [routerLink]="['/hotelDetail', hotel.id]">
+                    <i class="fas fa-info-circle"></i> Details
+                  </button>
+                  <button class="btn btn-success btn-book ">
+                    <i class="fas fa-calendar-check"></i> Book Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        } @empty { 
+            <div class="col-12 text-center py-5">
+        <div class="empty-state">
+          <i class="fas fa-map-marked-alt fa-3x mb-3 text-muted"></i>
+          <h4 class="text-muted">No Hotls available</h4>
+          <p class="text-muted">Check back later for new hotel packages</p>
+        </div>
+    
+            </div>
+        }
+      </div>
+  
+      <!-- Load More Button -->
+      <div class="text-center mt-5">
+        <button class="btn btn-outline-primary btn-load-more">
+          <i class="fas fa-redo"></i> Load More Hotels
+        </button>
+      </div>
+    </div>
+  </section>
+  
+}
+

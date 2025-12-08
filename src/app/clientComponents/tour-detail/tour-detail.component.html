@@ -1,0 +1,361 @@
+<!-- Tour Header Section - الصورة فقط -->
+@if (DetailedTour()) {
+  <section class="category-hero-section-new">
+    <div class="hero-img-wrapper-new">
+      <img
+        [src]="DetailedTour()?.imageCover"
+        [alt]="DetailedTour()?.title"
+        class="hero-img-new"
+      />
+    </div>
+
+    <div class="hero-info-new container">
+      @for (ch of DetailedTour()?.title?.split(''); track $index) {
+        <span class="{{ ch === ' ' ? 'space' : '' }}">{{ ch }}</span>
+      }
+    </div>
+    
+    
+    
+    
+  </section>
+}
+
+  
+  @if (DetailedTour()) {
+  <div class="container main-content">
+    <div class="row">
+      <!-- Main Content - اليسار -->
+      <div class="col-lg-8">
+        <!-- Tour Description -->
+        <section class="tour-description-section mb-5">
+          <div class="info-card">
+            <h2 class="section-title">Tour Description</h2>
+            <p class="description-text">{{ DetailedTour()?.description }}</p>
+            
+            <div class="tour-info-grid">
+              <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                  <span class="info-label">Duration</span>
+                  <span class="info-value"> {{ DetailedTour()?.duration }} days</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <span class="info-label">Start Location</span>
+                  <span class="info-value"> {{ DetailedTour()?.startLocation }}</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-flag-checkered"></i>
+                <div>
+                  <span class="info-label">End Location</span>
+                  <span class="info-value"> {{ DetailedTour()?.endLocation }}</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-language"></i>
+                <div>
+                  <span class="info-label">Languages</span>
+                  <span class="info-value">{{ DetailedTour()?.languageOptions }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  
+        <!-- Image Carousel -->
+        @if (DetailedTour()?.tourImgs && DetailedTour()!.tourImgs.length > 0) {
+        <section class="carousel-section mb-5">
+          <h2 class="section-title">Tour Gallery</h2>
+          <div class="carousel-container">
+            <div class="carousel-slide">
+              <img 
+                [src]="DetailedTour()!.tourImgs[currentCarouselIndex()].imageCarouselUrl" 
+                [alt]="DetailedTour()!.tourImgs[currentCarouselIndex()].title" 
+                class="carousel-image"
+              />
+              <button class="carousel-btn prev-btn" (click)="prevCarouselImage()">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="carousel-btn next-btn" (click)="nextCarouselImage()">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            <div class="carousel-indicators">
+              @for (img of DetailedTour()?.tourImgs; track img.id; let i = $index) {
+              <button 
+                class="indicator {{ i === currentCarouselIndex() ? 'active' : '' }}"
+                (click)="goToCarouselImage(i)"
+              ></button>
+              }
+            </div>
+          </div>
+        </section>
+        }
+  
+        <!-- Tour Highlights -->
+        @if (DetailedTour()?.highlights && DetailedTour()!.highlights.length > 0) {
+        <section class="mb-5">
+          <h2 class="section-title">Tour Highlights</h2>
+          <div class="info-card">
+            @for (highlight of DetailedTour()?.highlights; track highlight.text) {
+            <div class="highlight-item">
+              <i class="fas fa-star"></i>
+              <div>
+                <strong>{{ splitHighlightText(highlight.text).title }}</strong>
+                <p>{{ splitHighlightText(highlight.text).description }}</p>
+              </div>
+            </div>
+            }
+          </div>
+        </section>
+        }
+        
+        <!-- What's Included -->
+        @if (DetailedTour()?.includeds && DetailedTour()!.includeds.length > 0) {
+        <section class="mb-5">
+          <h2 class="section-title">What's Included</h2>
+          <div class="info-card">
+            @for (item of DetailedTour()?.includeds; track item.text) {
+            <div class="included-item">
+              <i class="fas fa-check-circle"></i>
+              <div>
+                <strong>{{ splitItemText(item.text).title }}</strong>
+                <p>{{ splitItemText(item.text).description }}</p>
+              </div>
+            </div>
+            }
+          </div>
+        </section>
+        }
+        
+        <!-- What's Not Included -->
+      @if (DetailedTour()?.notIncludeds && DetailedTour()!.notIncludeds.length > 0) {
+  <section class="not-included-section mb-5">
+    <h2 class="section-title">What's Not Included</h2>
+    <div class="not-included-card">
+      @for (item of DetailedTour()?.notIncludeds; track item.text) {
+        <div class="not-included-point">
+          <i class="fas fa-times-circle"></i>
+          <div>
+            <strong>{{ splitItemText(item.text).title }}</strong>
+            <p>{{ splitItemText(item.text).description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}
+<section class="gold-info-section mb-5">
+  <h2 class="section-title">Knew Before You Go</h2>
+
+  <ul class="info-list">
+    <li>
+      <i class="fas fa-info-circle"></i>
+      Hotel transfers are included for most locations in Marsa Alam. Additional charges may apply for remote areas.
+    </li>
+
+    <li>
+      <i class="fas fa-user-check"></i>
+      Suitable for beginners and experienced snorkelers. A guide will be available to assist.
+    </li>
+
+    <li>
+      <i class="fas fa-fish"></i>
+      Sightings of sea turtles and dugongs are common but cannot be guaranteed, as they are wild animals.
+    </li>
+
+    <li>
+      <i class="fas fa-utensils"></i>
+      A buffet lunch and soft drinks are included. Please inform us in advance of any dietary restrictions.
+    </li>
+
+    <li>
+      <i class="fas fa-child"></i>
+      Children must be accompanied by an adult. The trip is not recommended for infants under 3 years old.
+    </li>
+  </ul>
+</section>
+
+<section class="gold-info-section mb-5">
+  <h2 class="section-title">Payment Policy</h2>
+
+  <ul class="info-list">
+
+    <li>
+      <i class="fas fa-credit-card"></i>
+      Reserve now & pay later
+    </li>
+
+    <li>
+      <i class="fas fa-coins"></i>
+      Tour price currency is set to Euro but you can pay in USD or British pound
+    </li>
+
+    <li>
+      <i class="fas fa-tags"></i>
+      The prices quoted per person per tour and prices are always updated to ensure you receive the best possible price
+    </li>
+
+    <li>
+      <i class="fas fa-award"></i>
+      Others may offer cheaper prices, but we promise unmatched quality, personalized care, and a memorable experience.
+    </li>
+
+  </ul>
+</section>
+<section class="gold-video-section mb-5">
+  <h2 class="section-title">Tour Video</h2>
+
+  <div class="video-wrapper">
+    <iframe 
+    [src]="DetailedTour()?.linkVideo | safeUrl"
+    frameborder="0" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+
+      </div>
+      
+      <!-- Booking Form - اليمين -->
+      <div class="col-lg-4">
+        <div class="booking-card">
+          <div class="booking-header">
+            <div class="booking-price">${{ DetailedTour()?.price }}</div>
+            <span class="price-note">per person</span>
+          </div>
+          
+
+
+
+
+          <form class="booking-form" [formGroup]="BookingForm" (ngSubmit)="FormSubmited()">
+  
+            <div class="form-group mb-3">
+              <label for="FullName" class="form-label">
+                <i class="fas fa-user"></i> Full Name
+              </label>
+              <input [ngClass]="{
+                      'is-invalid': BookingForm.get('FullName')?.invalid && (BookingForm.get('FullName')?.touched || BookingForm.get('FullName')?.dirty),
+                      'is-valid': BookingForm.get('FullName')?.valid && (BookingForm.get('FullName')?.touched || BookingForm.get('FullName')?.dirty)
+                  }" id="FullName" type="text" class="form-control" formControlName="FullName" >
+              @if(BookingForm.get('FullName')?.invalid && (BookingForm.get('FullName')?.touched||BookingForm.get('FullName')?.dirty)){
+                <div class="text-danger small mt-1">Full Name is required (min 3 chars).</div>
+              }
+            </div>
+          
+            <div class="form-group mb-3">
+              <label for="EmailAddress" class="form-label">
+                <i class="fas fa-envelope"></i> Email Address
+              </label>
+              <input [ngClass]="{
+                      'is-invalid': BookingForm.get('EmailAddress')?.invalid && (BookingForm.get('EmailAddress')?.touched || BookingForm.get('EmailAddress')?.dirty),
+                      'is-valid': BookingForm.get('EmailAddress')?.valid && (BookingForm.get('EmailAddress')?.touched || BookingForm.get('EmailAddress')?.dirty)
+                  }" id="EmailAddress" type="email" class="form-control" formControlName="EmailAddress">
+              @if(BookingForm.get('EmailAddress')?.invalid && (BookingForm.get('EmailAddress')?.touched||BookingForm.get('EmailAddress')?.dirty)){
+                <div class="text-danger small mt-1">Valid Email is required.</div>
+              }
+            </div>
+          
+            <div class="form-group mb-3">
+              <label for="Message" class="form-label">
+                <i class="fas fa-comment-alt"></i> Details of Booking
+              </label>
+              <input [ngClass]="{
+                      'is-invalid': BookingForm.get('Message')?.invalid && (BookingForm.get('Message')?.touched || BookingForm.get('Message')?.dirty),
+                      'is-valid': BookingForm.get('Message')?.valid && (BookingForm.get('Message')?.touched || BookingForm.get('Message')?.dirty)
+                  }" id="Message" type="text" class="form-control" formControlName="Message">
+              @if(BookingForm.get('Message')?.invalid && (BookingForm.get('Message')?.touched||BookingForm.get('Message')?.dirty)){
+                <div class="text-danger small mt-1">Details of Booking is required</div>
+              }
+            </div>
+
+            <div class="row two-cols">
+
+              <div class="form-group mb-3 col-half">
+                <label class="form-label">
+                  <i class="fas fa-user"></i> Adults (11+ Years):
+                </label>
+                <input 
+                  [ngClass]="{
+                    'is-invalid': BookingForm.get('AdultsNumber')?.invalid && (BookingForm.get('AdultsNumber')?.touched || BookingForm.get('AdultsNumber')?.dirty),
+                    'is-valid': BookingForm.get('AdultsNumber')?.valid && (BookingForm.get('AdultsNumber')?.touched || BookingForm.get('AdultsNumber')?.dirty)
+                  }"
+                  type="number" 
+                  class="form-control" 
+                  formControlName="AdultsNumber"
+                >
+                @if(BookingForm.get('AdultsNumber')?.invalid && (BookingForm.get('AdultsNumber')?.touched||BookingForm.get('AdultsNumber')?.dirty)){
+                  <div class="text-danger small mt-1">Adults Number is required</div>
+                }
+              </div>
+            
+              <div class="form-group mb-3 col-half">
+                <label class="form-label">
+                  <i class="fas fa-child"></i> Child (6–11 Years):
+                </label>
+                <input 
+                  [ngClass]="{
+                    'is-invalid': BookingForm.get('ChildernNumber')?.invalid && (BookingForm.get('ChildernNumber')?.touched || BookingForm.get('ChildernNumber')?.dirty),
+                    'is-valid': BookingForm.get('ChildernNumber')?.valid && (BookingForm.get('ChildernNumber')?.touched || BookingForm.get('ChildernNumber')?.dirty)
+                  }"
+                  type="number" 
+                  class="form-control" 
+                  formControlName="ChildernNumber"
+                >
+                @if(BookingForm.get('ChildernNumber')?.invalid && (BookingForm.get('ChildernNumber')?.touched||BookingForm.get('ChildernNumber')?.dirty)){
+                  <div class="text-danger small mt-1">Children Number is required</div>
+                }
+              </div>
+            
+            </div>
+            
+          
+            <div class="form-group mb-3">
+              <label for="BookingDate" class="form-label">
+                <i class="fas fa-calendar-alt"></i> Date
+              </label>
+              <input [ngClass]="{
+                      'is-invalid': BookingForm.get('BookingDate')?.invalid && (BookingForm.get('BookingDate')?.touched || BookingForm.get('BookingDate')?.dirty),
+                      'is-valid': BookingForm.get('BookingDate')?.valid && (BookingForm.get('BookingDate')?.touched || BookingForm.get('BookingDate')?.dirty)
+                  }" id="BookingDate" type="date" class="form-control" formControlName="BookingDate">
+              @if(BookingForm.get('BookingDate')?.invalid && (BookingForm.get('BookingDate')?.touched||BookingForm.get('BookingDate')?.dirty)){
+                <div class="text-danger small mt-1">Date of Booking is required</div>
+              }
+            </div>
+          
+            <button class="btn-book" alt="Book Now">
+              <i class="fas fa-plane"></i>
+              <i class="fa-solid fa-person-walking-luggage"></i>
+              <i class="fa-solid fa-suitcase-rolling"></i>
+         </button>
+            
+          
+            <div class="security-notice">
+              <i class="fas fa-shield-alt"></i>
+              <span>Your payment is secure and encrypted</span>
+            </div>
+          </form>
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  
+  <!-- Loading State -->
+  @if (!DetailedTour()) {
+  <div class="container text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3">Loading tour details...</p>
+  </div>
+  }

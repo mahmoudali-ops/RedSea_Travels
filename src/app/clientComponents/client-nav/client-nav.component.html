@@ -1,0 +1,117 @@
+<nav class="main-nav" 
+[class.scrolled]="isScrolled" 
+[class.light]="!isScrolled"
+[class.hide-on-mobile]="isOffcanvasOpen">
+    <div class="container nav-container">
+      <!-- الشعار -->
+      <a class="logo" routerLink="/">
+        <img src="assets/images/redseaRemove1.png" alt="Logo" />
+      </a>
+  
+      <!-- القائمة في الوسط -->
+      <ul class="nav-links">
+        <li><a routerLink="/"routerLinkActive="active-link">Home</a></li>
+        <!-- <li><a routerLink="tour"routerLinkActive="active-link">Tours</a></li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle">Hurghada Tours</a>
+        
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/categrytourDetail', 14]">Cairo Tours</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 10]">Luxor Tours</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 12]">Safari Tours</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 11]">Sea Tours</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 13]">Things To Do In Hurghada</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle">Marsa Alam Tours</a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/categrytourDetail', 5]">Cairo Tours</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 6]">Luxor Tours</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 8]">Safari Tours</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 7]">Sea Tours</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 9]">Things To Do In Hurghada</a></li>
+          </ul>
+        </li>
+   
+        <li><a routerLink="transfer"routerLinkActive="active-link">Transfers</a></li>
+        <li><a routerLink="/"routerLinkActive="active-link">Blogs</a></li>
+        <li><a routerLink="/"routerLinkActive="active-link">Reviews</a></li>
+        <li><a routerLink="/"routerLinkActive="active-link">About</a></li>
+      </ul>
+  
+      <!-- Social Icons على اليمين s-->
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <button class="hamburger-btn" (click)="toggleOffcanvas()" [class.active]="isOffcanvasOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- Hamburger Button for Mobile -->
+
+<!-- Offcanvas Menu -->
+<div class="offcanvas-overlay" (click)="closeOffcanvas()" [class.active]="isOffcanvasOpen"></div>
+
+<div class="offcanvas-menu" [class.active]="isOffcanvasOpen">
+  <div class="offcanvas-header">
+    <a class="logo" routerLink="/" (click)="closeOffcanvas()">
+      <img src="assets/images/redseaRemove1.png" alt="Logo" />
+    </a>
+    <button class="close-btn" (click)="closeOffcanvas()">&times;</button>
+  </div>
+
+  <ul class="offcanvas-links">
+    <li><a routerLink="/" routerLinkActive="active-link" (click)="closeOffcanvas()">Home</a></li>
+    
+    <!-- Hurghada Tours Dropdown -->
+    <li class="offcanvas-dropdown">
+      <a class="dropdown-toggle" (click)="toggleDropdown($event, 'hurghada')">
+        Hurghada Tours
+        <i class="fas fa-chevron-down"></i>
+      </a>
+      <ul class="dropdown-submenu" [class.open]="activeDropdown === 'hurghada'">
+        <li><a [routerLink]="['/categrytourDetail', 14]" (click)="closeOffcanvas()">Cairo Tours</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 10]" (click)="closeOffcanvas()">Luxor Tours</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 12]" (click)="closeOffcanvas()">Safari Tours</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 11]" (click)="closeOffcanvas()">Sea Tours</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 13]" (click)="closeOffcanvas()">Things To Do In Hurghada</a></li>
+      </ul>
+    </li>
+
+    <!-- Marsa Alam Tours Dropdown -->
+    <li class="offcanvas-dropdown">
+      <a class="dropdown-toggle" (click)="toggleDropdown($event, 'marsa')">
+        Marsa Alam Tours
+        <i class="fas fa-chevron-down"></i>
+      </a>
+      <ul class="dropdown-submenu" [class.open]="activeDropdown === 'marsa'">
+        <li><a [routerLink]="['/categrytourDetail', 5]" (click)="closeOffcanvas()">Cairo Tours</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 6]" (click)="closeOffcanvas()">Luxor Tours</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 8]" (click)="closeOffcanvas()">Safari Tours</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 7]" (click)="closeOffcanvas()">Sea Tours</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 9]" (click)="closeOffcanvas()">Things To Do In Hurghada</a></li>
+      </ul>
+    </li>
+
+    <li><a routerLink="transfer" routerLinkActive="active-link" (click)="closeOffcanvas()">Transfers</a></li>
+    <li><a routerLink="/" (click)="closeOffcanvas()">Blogs</a></li>
+    <li><a routerLink="/" (click)="closeOffcanvas()">Reviews</a></li>
+    <li><a routerLink="/" (click)="closeOffcanvas()">About</a></li>
+  </ul>
+
+  <!-- Social Icons in Offcanvas -->
+  <div class="offcanvas-social">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+</div>

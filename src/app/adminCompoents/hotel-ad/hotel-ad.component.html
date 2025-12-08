@@ -1,0 +1,66 @@
+<div class="tour-listt">
+    <h2 class="section-title">All Hotels</h2>
+    
+    <div class="tour-list">
+
+    <!-- Add Button -->
+    <div class="add-tour-wrapper">
+      <button class="btn add-tour-btn">
+        <i class="fa-solid fa-plus"></i>
+        Add New Hotel
+      </button>
+    </div>
+    <div class="search-wrapper">
+        <input 
+          type="text" 
+          placeholder="Search hotel..."
+          />
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      </div>
+    <div class="tour-row header">
+      <div>ID</div>
+      <div>Hotel Name</div>
+      <div>Destination</div>
+      <div>Status</div>
+      <div>Actions</div>
+    </div>
+
+    @for (hotel of AllHotelsList(); track hotel.id) {
+    <div class="tour-row">
+  
+      <div class="tour-col id">
+        <span># {{ hotel.id }}</span>
+      </div>
+  
+      <div class="tour-col title">
+        <h3>{{ hotel.names }}</h3>
+      </div>
+  
+      <div class="tour-col destination">
+        <h3>{{ hotel.destinationName }}</h3>
+      </div>
+  
+      <div class="tour-col status">
+        <span
+          class="tour-status"
+          [class.active]="hotel.isActive"
+          [class.inactive]="!hotel.isActive"
+        >
+          {{ hotel.isActive ? 'Active' : 'Inactive' }}
+        </span>
+      </div>
+  
+      <div class="tour-col actions">
+        <button class="btn edit-btn" title="Edit">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button class="btn delete-btn" title="Delete">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+  
+    </div>
+    }
+</div>
+  </div>
+  

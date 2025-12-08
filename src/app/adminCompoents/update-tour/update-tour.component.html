@@ -1,0 +1,213 @@
+<div class="form-wrapper">
+  <!-- ===== Error Summary Box ===== -->
+  <div *ngIf="errorSummary.length > 0" class="error-summary">
+    <h4>يرجى مراجعة الآتي:</h4>
+    <ul>
+      <li *ngFor="let err of errorSummary">{{ err }}</li>
+    </ul>
+  </div>
+
+  <form [formGroup]="tourForm" (ngSubmit)="onSubmit()" class="create-tour-form">
+    <h2 class="mb-4 text-center">Update Tour</h2>
+
+    <!-- Reference Name -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-tag"></i> Reference Name</label>
+      <input type="text" class="form-control" formControlName="referenceName"
+        [ngClass]="{
+          'is-invalid': tourForm.get('referenceName')?.invalid && (tourForm.get('referenceName')?.touched || tourForm.get('referenceName')?.dirty),
+          'is-valid': tourForm.get('referenceName')?.valid && (tourForm.get('referenceName')?.touched || tourForm.get('referenceName')?.dirty)
+        }"
+        placeholder="Enter reference name" />
+      <div class="text-danger small mt-1" *ngIf="tourForm.get('referenceName')?.invalid && (tourForm.get('referenceName')?.touched || tourForm.get('referenceName')?.dirty)">
+        Reference Name is required.
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-heading"></i> Title</label>
+      <input type="text" class="form-control" formControlName="title" placeholder="Enter title"
+        [ngClass]="{
+          'is-invalid': tourForm.get('title')?.invalid && (tourForm.get('title')?.touched || tourForm.get('title')?.dirty),
+          'is-valid': tourForm.get('title')?.valid && (tourForm.get('title')?.touched || tourForm.get('title')?.dirty)
+        }" />
+      <div class="text-danger small mt-1" *ngIf="tourForm.get('title')?.invalid && (tourForm.get('title')?.touched || tourForm.get('title')?.dirty)">
+        Title is required.
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-align-left"></i> Description</label>
+      <textarea class="form-control" rows="3" formControlName="description" placeholder="Enter description"
+        [ngClass]="{
+          'is-invalid': tourForm.get('description')?.invalid && (tourForm.get('description')?.touched || tourForm.get('description')?.dirty),
+          'is-valid': tourForm.get('description')?.valid && (tourForm.get('description')?.touched || tourForm.get('description')?.dirty)
+        }"></textarea>
+      <div class="text-danger small mt-1" *ngIf="tourForm.get('description')?.invalid && (tourForm.get('description')?.touched || tourForm.get('description')?.dirty)">
+        Description is required.
+      </div>
+    </div>
+
+    <!-- Meta Description -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-align-left"></i> Meta Description</label>
+      <textarea class="form-control" rows="2" formControlName="metaDescription" placeholder="Enter meta description"></textarea>
+    </div>
+
+    <!-- Meta Keywords -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-key"></i> Meta Keywords</label>
+      <textarea class="form-control" rows="2" formControlName="metaKeyWords" placeholder="Enter keywords"></textarea>
+    </div>
+
+    <!-- Link Video -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-video"></i> Video Link</label>
+      <input type="text" class="form-control" formControlName="linkVideo" placeholder="YouTube or video link" />
+    </div>
+
+    <!-- Language Options -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-language"></i> Language Options</label>
+      <input type="text" class="form-control" formControlName="languageOptions" placeholder="e.g. EN,AR" />
+    </div>
+
+    <!-- Start / End Location -->
+    <div class="row g-2">
+      <div class="col-6">
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="fas fa-map-marker-alt"></i> Start Location</label>
+          <input type="text" class="form-control" formControlName="startLocation" placeholder="Start location" />
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="fas fa-map-marker-alt"></i> End Location</label>
+          <input type="text" class="form-control" formControlName="endLocation" placeholder="End location" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Duration & Price -->
+    <div class="row g-2">
+      <div class="col-6">
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="fas fa-clock"></i> Duration (hours/days)</label>
+          <input type="number" class="form-control" formControlName="duration" placeholder="Duration" />
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="fas fa-dollar-sign"></i> Price</label>
+          <input type="number" class="form-control" formControlName="price" placeholder="Price" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Category / Destination IDs -->
+    <div class="row g-2">
+      <div class="col-6">
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="fas fa-folder"></i> Category ID</label>
+          <input type="number" class="form-control" formControlName="fkCategoryId" placeholder="Category ID" />
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group mb-3">
+          <label class="form-label"><i class="fas fa-map-pin"></i> Destination ID</label>
+          <input type="number" class="form-control" formControlName="fkDestinationId" placeholder="Destination ID" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Checkbox -->
+    <div class="form-group mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <input type="checkbox" formControlName="isActive" class="form-check-input" />
+        <span><i class="fas fa-check-circle"></i> Active</span>
+      </label>
+    </div>
+
+    <!-- Upload Main Image -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-image"></i> Main Image</label>
+      <div class="image-upload-wrapper d-flex align-items-center gap-3">
+        <input type="file" class="form-control" #fileInput (change)="onFileSelected($event)" />
+        <div class="image-preview" *ngIf="imagePreview || oldMainImageUrl">
+          <img [src]="imagePreview ? imagePreview : oldMainImageUrl" alt="Preview" />
+          <button type="button" class="remove-image-btn btn btn-outline-danger btn-sm" (click)="removeMainImage()">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Images List (Gallery) -->
+    <div formArrayName="imagesList" class="mb-3">
+      <label class="form-label"><i class="fas fa-images"></i> Images List (Gallery)</label>
+
+      <div *ngFor="let imgCtrl of imagesList.controls; let i = index" [formGroupName]="i" class="mb-2 card p-2">
+        <div class="row g-2 align-items-center">
+          <div class="col-md-4">
+            <input type="text" class="form-control" formControlName="Title" placeholder="Image title" />
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control" formControlName="ReferenceName" placeholder="Reference name" />
+          </div>
+          <div class="col-md-3">
+            <input type="file" class="form-control" (change)="onGalleryImageSelected($event, i)" />
+          </div>
+          <div class="col-md-1">
+            <label class="form-check-label d-block">Active</label>
+            <input type="checkbox" class="form-check-input" formControlName="IsActive" />
+          </div>
+          <div class="col-md-1 d-flex justify-content-end">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeImage(i)">Remove</button>
+          </div>
+        </div>
+
+        <!-- Image preview -->
+        <div class="mt-2" *ngIf="galleryPreview && galleryPreview[i]">
+          <img [src]="galleryPreview[i]" alt="gallery preview" style="max-height:80px; border-radius:6px;" />
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary btn-sm mt-2" (click)="addImage()">Add Image</button>
+    </div>
+
+    <!-- Includes List -->
+    <div formArrayName="includesList" class="mb-3">
+      <label class="form-label"><i class="fas fa-check"></i> Includes List</label>
+      <div *ngFor="let inc of includesList.controls; let i = index" [formGroupName]="i" class="mb-2 d-flex gap-2">
+        <input type="text" class="form-control" formControlName="Text" placeholder="Include item" />
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeInclude(i)">Remove</button>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addInclude()">Add Include</button>
+    </div>
+
+    <!-- Not Included List -->
+    <div formArrayName="notIncludedList" class="mb-3">
+      <label class="form-label"><i class="fas fa-times"></i> Not Included List</label>
+      <div *ngFor="let notInc of notIncludedList.controls; let i = index" [formGroupName]="i" class="mb-2 d-flex gap-2">
+        <input type="text" class="form-control" formControlName="Text" placeholder="Not included item" />
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeNotIncluded(i)">Remove</button>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addNotIncluded()">Add Not Included</button>
+    </div>
+
+    <!-- Highlight List -->
+    <div formArrayName="highlightList" class="mb-3">
+      <label class="form-label"><i class="fas fa-star"></i> Highlight List</label>
+      <div *ngFor="let hl of highlightList.controls; let i = index" [formGroupName]="i" class="mb-2 d-flex gap-2">
+        <input type="text" class="form-control" formControlName="Text" placeholder="Highlight item" />
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeHighlight(i)">Remove</button>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addHighlight()">Add Highlight</button>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary w-100 mt-3">Update Tour</button>
+  </form>
+</div>

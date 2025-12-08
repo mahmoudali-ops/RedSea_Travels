@@ -1,0 +1,131 @@
+<div class="form-wrapper">
+    <form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="create-transfer-form">
+  
+      <h2 class="mb-4 text-center">Update Transfer</h2>
+  
+      <div class="form-grid">
+  
+        <!-- Reference Name -->
+        <div class="form-group">
+          <label class="form-label">Reference Name</label>
+          <input type="text" class="form-control" formControlName="referenceName" placeholder="Reference Name" />
+        </div>
+  
+        <!-- Title -->
+        <div class="form-group">
+          <label class="form-label">Title</label>
+          <input type="text" class="form-control" formControlName="title" placeholder="Title" />
+        </div>
+  
+        <!-- Description -->
+        <div class="form-group full-width">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="3" formControlName="description" placeholder="Description"></textarea>
+        </div>
+  
+        <!-- Meta Description -->
+        <div class="form-group">
+          <label class="form-label">Meta Description</label>
+          <input type="text" class="form-control" formControlName="metaDescription" placeholder="Meta Description" />
+        </div>
+  
+        <!-- Meta Keywords -->
+        <div class="form-group">
+          <label class="form-label">Meta Keywords</label>
+          <input type="text" class="form-control" formControlName="metaKeyWords" placeholder="Meta Keywords" />
+        </div>
+  
+        <!-- Active -->
+        <div class="form-group">
+          <label class="form-label d-flex align-items-center gap-2">
+            <input type="checkbox" formControlName="isActive" class="form-check-input" />
+            Active
+          </label>
+        </div>
+  
+        <!-- Destination Dropdown -->
+        <div class="form-group">
+            <label class="form-label">Destination</label>
+            <select class="form-control" formControlName="fkDestinationId">
+              <option value="">Select Destination</option>
+              <option *ngFor="let d of allDestionList()" [value]="d.id">
+                {{ d.title }}
+              </option>
+            </select>
+          </div>
+          
+  
+        <!-- Image Upload -->
+        <div class="form-group full-width">
+          <label class="form-label">Upload Image</label>
+          <div class="image-upload-wrapper">
+            <input type="file" class="form-control" #fileInput (change)="onFileSelected($event)" />
+  
+            <div class="image-preview" *ngIf="imagePreview || oldImageUrl">
+              <img [src]="imagePreview ? imagePreview : oldImageUrl" alt="Preview" />
+              <button type="button" class="remove-image-btn" (click)="removeImage()">&times;</button>
+            </div>
+          </div>
+        </div>
+
+   
+  
+        <!-- Prices List -->
+        <div class="form-group full-width">
+          <label class="form-label">Prices List</label>
+          <div formArrayName="pricesList">
+            <div *ngFor="let p of pricesList.controls; let i = index" [formGroupName]="i" class="d-flex gap-2 mb-2">
+              <input type="text" class="form-control" formControlName="Title" placeholder="Title" />
+              <input type="number" class="form-control" formControlName="PrivtePrice" placeholder="Private Price" />
+              <input type="number" class="form-control" formControlName="SharedPrice" placeholder="Shared Price" />
+              <button type="button" class="btn btn-danger btn-sm" (click)="removePrice(i)">Remove</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addPrice()">Add Price</button>
+        </div>
+  
+        <!-- Includes List -->
+        <div class="form-group full-width">
+          <label class="form-label">Includes</label>
+          <div formArrayName="includesList">
+            <div *ngFor="let inc of includesList.controls; let i = index" [formGroupName]="i" class="d-flex gap-2 mb-2">
+              <input type="text" class="form-control" formControlName="Text" placeholder="Include item" />
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeInclude(i)">Remove</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addInclude()">Add Include</button>
+        </div>
+  
+        <!-- Not Included List -->
+        <div class="form-group full-width">
+          <label class="form-label">Not Included</label>
+          <div formArrayName="notIncludedList">
+            <div *ngFor="let n of notIncludedList.controls; let i = index" [formGroupName]="i" class="d-flex gap-2 mb-2">
+              <input type="text" class="form-control" formControlName="Text" placeholder="Not Included item" />
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeNotIncluded(i)">Remove</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addNotIncluded()">Add Not Included</button>
+        </div>
+  
+        <!-- Highlight List -->
+        <div class="form-group full-width">
+          <label class="form-label">Highlight List</label>
+          <div formArrayName="highlightList">
+            <div *ngFor="let h of highlightList.controls; let i = index" [formGroupName]="i" class="d-flex gap-2 mb-2">
+              <input type="text" class="form-control" formControlName="Text" placeholder="Highlight item" />
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeHighlight(i)">Remove</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addHighlight()">Add Highlight</button>
+        </div>
+  
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary submit-btn full-width mt-3">
+          Update Transfer
+        </button>
+  
+      </div>
+    </form>
+  </div>
+  

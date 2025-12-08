@@ -1,0 +1,271 @@
+<div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" >
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+    </div>
+  
+    <!-- Carousel inner -->
+    <div class="carousel-inner" >
+      <div class="carousel-item active" data-bs-interval="2000">
+        <img src="assets/images/redsea (2).jpg" class="d-block w-100 carousel-image" alt="Museum 1">
+        <div class="carousel-caption left-bottom animated-caption">
+          <h1 class="brand-name">RedSea Tours</h1>
+          <p class="brand-subtitle">Amazing Trips </p>
+        </div>
+      </div> 
+
+    <div class="carousel-inner" >
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="assets/images/musem2.jpg" class="d-block w-100 carousel-image" alt="Museum 1">
+        <div class="carousel-caption left-bottom animated-caption">
+          <h1 class="brand-name">RedSea Tours</h1>
+          <p class="brand-subtitle">Discover Your Next Adventure</p>
+        </div>
+      </div>
+  
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="assets/images/musem.jpg" class="d-block w-100 carousel-image" alt="Museum 2">
+        <div class="carousel-caption left-bottom animated-caption">
+          <h1 class="brand-name">RedSea Tours</h1>
+          <p class="brand-subtitle">Explore the Wonders of Egypt</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- في home.component.html -->
+<div class="home-page">
+  
+  <!-- الأقسام الجديدة تحت الـ Carousel -->
+
+<section class="about-section py-4">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- الصورة على الشمال -->
+      <div class="col-lg-5 mb-4 mb-lg-0">
+        <div class="about-image-wrapper">
+          <img src="../../../assets/images/cosmic-black-hole.jpg" 
+               alt="Über uns" 
+               class="img-fluid about-image">
+        </div>
+      </div>
+
+      <!-- المحتوى على اليمين -->
+      <div class="col-lg-7">
+        <div class="about-content">
+          <h2 class="section-title mb-3">Über uns</h2>
+
+          <p class="lead intro-text">
+            TourSite ist ein führendes Reiseunternehmen, das außergewöhnliche Reiseerlebnisse in Ägypten und weltweit anbietet.
+          </p>
+
+          <p class="description-text">
+            Seit unserer Gründung im Jahr 2010 glauben wir, dass jede Reise eine Geschichte ist und jedes Abenteuer eine unvergessliche Erinnerung schafft.
+            Wir kombinieren höchste Servicequalität mit moderner Reiseerfahrung – für unvergessliche Momente.
+          </p>
+
+          <div class="features-list mt-3">
+            <div class="feature-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Über 50.000 zufriedene Kunden</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Professionelle und erfahrene Reiseleiter</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Individuelle Reisen für jedes Budget</span>
+            </div>
+          </div>
+
+          <button class="btn about-btn mt-3">Mehr über uns</button>
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  
+
+
+<!-- قسم الوجهات الشهيرة مع Swiper -->
+<section class="destinations-section py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">POPULAR DESTINATIONS FROM HURGHADA</h2>
+      <p class="section-subtitle">اكتشف أجمل الأماكن التي يمكنك زيارتها مع TourSite</p>
+    </div>
+
+    <swiper-container
+    autoplay-delay="3500"
+autoplay-disable-on-interaction="false"
+      class="destinations-swiper"
+      effect="coverflow"
+      grab-cursor="true"
+      centered-slides="true"
+      slides-per-view="auto"
+      pagination="true"
+      navigation="true"
+      coverflow-effect-rotate="30"
+      coverflow-effect-stretch="0"
+      coverflow-effect-depth="150"
+      coverflow-effect-modifier="1"
+      coverflow-effect-slide-shadows="true"
+      prevent-click-propagation="false"
+  preventInteractionOnTransition="false"
+      
+      >
+
+      @for (category of AllPopularHurghadaCat().slice(5,10); track category.id ) {
+
+        <swiper-slide [routerLink]="['/categrytourDetail', category.id]" class="pointer" >
+          <div class="destination-card" >
+            <img [src]="category.imageCover" [alt]="category.title">
+            <div class="destination-overlay">
+              <h4>{{category.title}}</h4>
+              <p>Hurghada</p>
+            </div>
+          </div>
+        </swiper-slide>
+      }
+      
+
+
+    </swiper-container>
+
+    <div class="text-center mt-4">
+      <button routerLink="/destnation" class="btn btn-outline-primary">استكشف جميع الوجهات</button>
+    </div>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+
+
+  <!-- قسم الوجهات الشهيرة -->
+  <section class="destinations-section-new py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="destinations-title"> Hurghada most popular Tours</h2>
+        <p class="destinations-subtitle">اكتشف أجمل الأماكن التي يمكنك زيارتها مع TourSite</p>
+      </div>
+      <div class="row">
+        @for (tour of HurghadaTours; track tour.id) {
+          <div class="col-md-6 col-lg-3 mb-4" 
+          [routerLink]="['/tourDetail', tour.id]"
+                    >
+            <div class="destination-card-new">
+              <div class="destination-image-new">
+                <img [src]="tour.imageCover" [alt]="tour.title" class="img-fluid">
+                <div class="destination-overlay-new">
+                  <h4>{{tour.title}}</h4>
+                  <p>{{tour.description.slice(0,10)}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+    
+        
+      </div>
+      <div class="text-center mt-4">
+        <button routerLink="/destnation" class="btn btn-outline-primary">استكشف جميع الوجهات</button>
+      </div>
+    </div>
+  </section>
+
+    <!-- قسم الوجهات الشهيرة -->
+    <section class="destinations-section-new py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="destinations-title">Marsa Alam most popular Tours
+</h2>
+          <p class="destinations-subtitle">اكتشف أجمل الأماكن التي يمكنك زيارتها مع TourSite</p>
+        </div>
+        <div class="row">
+          @for (tour of MarsaAlamTours; track tour.id) {
+            <div class="col-md-6 col-lg-3 mb-4" [routerLink]="['/tourDetail', tour.id]" >
+              <div class="destination-card-new">
+                <div class="destination-image-new">
+                  <img [src]="tour.imageCover" [alt]="tour.title" class="img-fluid">
+                  <div class="destination-overlay-new">
+                    <h4>{{tour.title}}</h4>
+                    <p>{{tour.description | termtext}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+      
+          
+        </div>
+        <div class="text-center mt-4">
+          <button routerLink="/destnation" class="btn btn-outline-primary">استكشف جميع الوجهات</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brilliant Reasons Section -->
+<section class="services-section py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Why Choose Us</h2>
+      <p class="section-subtitle">Brilliant Reasons</p>
+    </div>
+    <div class="row">
+
+      <div class="col-md-4 mb-4">
+        <div class="service-card text-center">
+          <div class="service-icon">
+            <i class="fas fa-monument"></i>
+          </div>
+          <h3>Expert Guided Tours</h3>
+          <p>Discover ancient wonders and historical treasures with our certified professional guides.</p>
+          <a href="#" class="service-link">
+            Explore Tours <i class="fas fa-arrow-left"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="service-card text-center">
+          <div class="service-icon">
+            <i class="fas fa-umbrella-beach"></i>
+          </div>
+          <h3>Beautiful Beach Trips</h3>
+          <p>Enjoy the most stunning beaches of the Red Sea and Mediterranean with perfectly arranged trips.</p>
+          <a href="#" class="service-link">
+            Explore Trips <i class="fas fa-arrow-left"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="service-card text-center">
+          <div class="service-icon">
+            <i class="fas fa-hiking"></i>
+          </div>
+          <h3>Desert Adventures</h3>
+          <p>Experience the beauty of the Egyptian desert with unforgettable safari and camping adventures.</p>
+          <a href="#" class="service-link">
+            Discover More <i class="fas fa-arrow-left"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+</div>
+  
+  

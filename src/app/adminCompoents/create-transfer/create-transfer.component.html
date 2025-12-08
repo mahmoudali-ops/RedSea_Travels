@@ -1,0 +1,186 @@
+<div class="form-wrapper">
+    <form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="create-transfer-form">
+      <h2 class="mb-4 text-center">Create Transfer</h2>
+  
+      <!-- Reference Name -->
+      <div class="form-group mb-3">
+        <label class="form-label"><i class="fas fa-tag"></i> Reference Name</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="referenceName"
+          [ngClass]="{
+            'is-invalid': transferForm.get('referenceName')?.invalid && (transferForm.get('referenceName')?.touched || transferForm.get('referenceName')?.dirty),
+            'is-valid': transferForm.get('referenceName')?.valid && (transferForm.get('referenceName')?.touched || transferForm.get('referenceName')?.dirty)
+          }"
+          placeholder="Enter reference name"
+        />
+        <div class="text-danger small mt-1" *ngIf="transferForm.get('referenceName')?.invalid && (transferForm.get('referenceName')?.touched || transferForm.get('referenceName')?.dirty)">
+          Reference Name is required.
+        </div>
+      </div>
+  
+      <!-- Title -->
+      <div class="form-group mb-3">
+        <label class="form-label"><i class="fas fa-heading"></i> Title</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="title"
+          placeholder="Enter title"
+          [ngClass]="{
+            'is-invalid': transferForm.get('title')?.invalid && (transferForm.get('title')?.touched || transferForm.get('title')?.dirty),
+            'is-valid': transferForm.get('title')?.valid && (transferForm.get('title')?.touched || transferForm.get('title')?.dirty)
+          }"
+        />
+        <div class="text-danger small mt-1"
+             *ngIf="transferForm.get('title')?.invalid && (transferForm.get('title')?.touched || transferForm.get('title')?.dirty)">
+          Title is required.
+        </div>
+      </div>
+      
+  
+      <!-- Description -->
+      <div class="form-group mb-3">
+        <label class="form-label"><i class="fas fa-align-left"></i> Description</label>
+        <textarea
+          class="form-control"
+          rows="3"
+          formControlName="description"
+          placeholder="Enter description"
+          [ngClass]="{
+            'is-invalid': transferForm.get('description')?.invalid && (transferForm.get('description')?.touched || transferForm.get('description')?.dirty),
+            'is-valid': transferForm.get('description')?.valid && (transferForm.get('description')?.touched || transferForm.get('description')?.dirty)
+          }"
+        ></textarea>
+        <div class="text-danger small mt-1"
+             *ngIf="transferForm.get('description')?.invalid && (transferForm.get('description')?.touched || transferForm.get('description')?.dirty)">
+          Description is required.
+        </div>
+      </div>
+      
+       <!-- Description -->
+       <div class="form-group mb-3">
+        <label class="form-label"><i class="fas fa-align-left"></i> Meta Description</label>
+        <textarea
+          class="form-control"
+          rows="3"
+          formControlName="metaDescription"
+          placeholder="Enter meta description"
+          [ngClass]="{
+            'is-invalid': transferForm.get('metaDescription')?.invalid && (transferForm.get('metaDescription')?.touched || transferForm.get('metaDescription')?.dirty),
+            'is-valid': transferForm.get('metaDescription')?.valid && (transferForm.get('metaDescription')?.touched || transferForm.get('metaDescription')?.dirty)
+          }"
+        ></textarea>
+        <div class="text-danger small mt-1"
+             *ngIf="transferForm.get('metaDescription')?.invalid && (transferForm.get('metaDescription')?.touched || transferForm.get('metaDescription')?.dirty)">
+          Meta Description is required.
+        </div>
+      </div>
+      
+       <!-- Description -->
+       <div class="form-group mb-3">
+        <label class="form-label"><i class="fas fa-key"></i> Meta Keywords</label>
+        <textarea
+          class="form-control"
+          rows="3"
+          formControlName="metaKeyWords"
+          placeholder="Enter keywords"
+          [ngClass]="{
+            'is-invalid': transferForm.get('metaKeyWords')?.invalid && (transferForm.get('metaKeyWords')?.touched || transferForm.get('metaKeyWords')?.dirty),
+            'is-valid': transferForm.get('metaKeyWords')?.valid && (transferForm.get('metaKeyWords')?.touched || transferForm.get('metaKeyWords')?.dirty)
+          }"
+        ></textarea>
+        <div class="text-danger small mt-1"
+             *ngIf="transferForm.get('metaKeyWords')?.invalid && (transferForm.get('metaKeyWords')?.touched || transferForm.get('metaKeyWords')?.dirty)">
+          Meta Keywords are required.
+        </div>
+      </div>
+      
+
+      <div class="form-group mb-3">
+        <label class="form-label"><i class="fas fa-map-marker-alt"></i> Destination ID</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="fkDestinationId"
+          placeholder="Enter Destination ID"
+          [ngClass]="{
+            'is-invalid': transferForm.get('fkDestinationId')?.invalid && (transferForm.get('fkDestinationId')?.touched || transferForm.get('fkDestinationId')?.dirty),
+            'is-valid': transferForm.get('fkDestinationId')?.valid && (transferForm.get('fkDestinationId')?.touched || transferForm.get('fkDestinationId')?.dirty)
+          }"
+        />
+        <div class="text-danger small mt-1"
+             *ngIf="transferForm.get('fkDestinationId')?.invalid && (transferForm.get('fkDestinationId')?.touched || transferForm.get('fkDestinationId')?.dirty)">
+          Destination ID is required.
+        </div>
+      </div>
+      
+  
+      <!-- Active Checkbox -->
+      <div class="form-group mb-3">
+        <label class="form-label d-flex align-items-center gap-2">
+          <input type="checkbox" formControlName="isActive" class="form-check-input">
+          <span><i class="fas fa-check-circle"></i> Active</span>
+        </label>
+      </div>
+  
+      <!-- Upload Image -->
+      <div class="form-group mb-3">
+        <label class="form-label"><i class="fas fa-image"></i> Upload Image</label>
+        <div class="image-upload-wrapper d-flex align-items-center gap-3">
+          <input type="file" class="form-control" #fileInput (change)="onFileSelected($event)" />
+          <div class="image-preview" *ngIf="imagePreview">
+            <img [src]="imagePreview" alt="Preview" />
+            <button type="button" class="remove-image-btn" (click)="removeImage()"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Prices List -->
+      <div formArrayName="pricesList" class="mb-3">
+        <label class="form-label"><i class="fas fa-money-bill-wave"></i> Prices List</label>
+        <div *ngFor="let price of pricesList.controls; let i = index" [formGroupName]="i" class="mb-2 d-flex gap-2 align-items-center">
+          <input type="text" class="form-control" formControlName="Title" placeholder="Title" />
+          <input type="number" class="form-control" formControlName="PrivtePrice" placeholder="Private Price" />
+          <input type="number" class="form-control" formControlName="SharedPrice" placeholder="Shared Price" />
+          <button type="button" class="btn btn-danger btn-sm" (click)="removePrice(i)">Remove</button>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addPrice()">Add Price</button>
+      </div>
+  
+      <!-- Includes List -->
+      <div formArrayName="includesList" class="mb-3">
+        <label class="form-label"><i class="fas fa-check"></i> Includes List</label>
+        <div *ngFor="let inc of includesList.controls; let i = index" [formGroupName]="i" class="mb-2 d-flex gap-2">
+          <input type="text" class="form-control" formControlName="Text" placeholder="Include item" />
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeInclude(i)">Remove</button>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addInclude()">Add Include</button>
+      </div>
+  
+      <!-- Not Included List -->
+      <div formArrayName="notIncludedList" class="mb-3">
+        <label class="form-label"><i class="fas fa-times"></i> Not Included List</label>
+        <div *ngFor="let notInc of notIncludedList.controls; let i = index" [formGroupName]="i" class="mb-2 d-flex gap-2">
+          <input type="text" class="form-control" formControlName="Text" placeholder="Not included item" />
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeNotIncluded(i)">Remove</button>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addNotIncluded()">Add Not Included</button>
+      </div>
+  
+      <!-- Highlight List -->
+      <div formArrayName="highlightList" class="mb-3">
+        <label class="form-label"><i class="fas fa-star"></i> Highlight List</label>
+        <div *ngFor="let hl of highlightList.controls; let i = index" [formGroupName]="i" class="mb-2 d-flex gap-2">
+          <input type="text" class="form-control" formControlName="Text" placeholder="Highlight item" />
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeHighlight(i)">Remove</button>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addHighlight()">Add Highlight</button>
+      </div>
+  
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary w-100 mt-3">Create Transfer</button>
+    </form>
+  </div>
+  

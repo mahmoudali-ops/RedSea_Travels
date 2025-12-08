@@ -1,0 +1,172 @@
+/* ===========================
+   FORM WRAPPER
+=========================== */
+.form-wrapper {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+/* ===========================
+   GRID LAYOUT
+=========================== */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px 30px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+/* ===========================
+   FORM ELEMENTS
+=========================== */
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: #444;
+}
+
+.form-control,
+.form-select {
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid #dcdcdc;
+  font-size: 15px;
+  transition: 0.25s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* ===========================
+   IMAGE UPLOAD AREA
+=========================== */
+/* ============================
+   IMAGE UPLOAD STYLING
+============================ */
+.image-upload-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* صندوق الصورة القديمة + الجديدة */
+.old-image-box,
+.image-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .25s ease;
+}
+
+.old-image-box:hover,
+.image-preview:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+}
+
+/* الصورة نفسها */
+.old-image-box img,
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* زر إزالة الصورة الجديدة فقط */
+.remove-image-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 14px;
+  border: none;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .25s ease;
+}
+
+.remove-image-btn:hover {
+  background: #ef4444;
+  transform: scale(1.1);
+}
+
+/* File Input */
+.image-upload-wrapper input[type="file"] {
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.image-upload-wrapper input[type="file"]:hover {
+  background: #eef2f6;
+}
+
+/* Small control buttons (add/remove rows) */
+.btn-sm {
+  padding: 4px 10px !important;
+  font-size: 13px !important;
+  border-radius: 6px !important;
+}
+
+/* ===========================
+   SUBMIT BUTTON
+=========================== */
+.submit-btn {
+  grid-column: span 2;
+  width: 100%;
+  padding: 14px;
+  font-size: 17px;
+  border-radius: 14px;
+  background: #007bff;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 18px rgba(0, 123, 255, 0.3);
+  transition: 0.3s ease;
+}
+.submit-btn:hover {
+  background: #005fcc;
+}
+
+/* ===========================
+   MOBILE RESPONSIVE
+=========================== */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* single column */
+  }
+
+  .submit-btn,
+  .full-width {
+    grid-column: span 1;
+  }
+}
