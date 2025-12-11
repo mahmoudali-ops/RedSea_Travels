@@ -90,7 +90,21 @@ export class HomeComponent implements  OnInit {
     );
   }
   
-
+  ngOnDestroy(): void {
+    if(this.TourSUbs()){
+      this.TourSUbs()?.unsubscribe();
+    }  
+  
+    if(this.destnationSUbs()){
+      this.destnationSUbs()?.unsubscribe();
+    }
+  
+    if(this.HurghdadaCatSbss()){
+      this.HurghdadaCatSbss()?.unsubscribe();
+    }
+  
+  
+  }
 
   
 }
