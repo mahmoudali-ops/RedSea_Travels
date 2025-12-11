@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   IsSccuess = false;
   serverError: string = '';
-  returnUrl: string = '/admin/dashboard';
+  returnUrl: string = '/admin/tours';
 
   private readonly _router = inject(Router);
   private readonly _route = inject(ActivatedRoute);
