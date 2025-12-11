@@ -11,13 +11,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ICatTour } from '../../core/interfaces/icat-tour';
 import { TermtextPipe } from '../../core/pipes/termtext.pipe';
 import { isPlatformBrowser, NgClass } from '@angular/common';
+import { ClientFooterComponent } from '../client-footer/client-footer.component';
 
 register();
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink,TermtextPipe],
+  imports: [RouterLink,TermtextPipe,ClientFooterComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],   // ← ← المهم هنا
 
   templateUrl: './home.component.html',
