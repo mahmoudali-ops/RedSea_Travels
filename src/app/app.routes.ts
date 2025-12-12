@@ -72,7 +72,7 @@ export const routes: Routes = [
       
           { path: 'emails', component: EmailAdComponent, title: 'Emails', canActivate: [authGuardGuard] },
           { path: 'users', component: UsersComponent, title: 'Users', canActivate: [authGuardGuard] },
-          { path: 'dashboard', component: DashboardComponent, title: 'Dashboard', canActivate: [authGuardGuard] },
+          { path: 'dashboard', component: ToursAdComponent, title: 'Dashboard', canActivate: [authGuardGuard] },
       
           // CRUD Tours محمية بالـ guard
           { path: 'tourCreate', component: CreateTourComponent, title: 'Admin Create a Tour', canActivate: [authGuardGuard] },
