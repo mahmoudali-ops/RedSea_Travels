@@ -34,6 +34,9 @@ import { UpdateCatTourComponent } from './adminCompoents/update-cat-tour/update-
 import { CreateTransferComponent } from './adminCompoents/create-transfer/create-transfer.component';
 import { UpdateTransferComponent } from './adminCompoents/update-transfer/update-transfer.component';
 import { authGuardGuard } from './core/guards/auth-guard.guard';
+import { UpdateAboutpageComponent } from './adminCompoents/update-aboutpage/update-aboutpage.component';
+import { UpdateHomepageComponent } from './adminCompoents/update-homepage/update-homepage.component';
+import { AboutComponent } from './clientComponents/about/about.component';
 
 export const routes: Routes = [
     {
@@ -48,7 +51,7 @@ export const routes: Routes = [
             {path: 'transferDetail/:id',component:TransfersDetailComponent,title: 'Transfers Details' },
             {path: 'categrytourDetail/:id',component:CategoryTourDetailComponent,title: 'Tours Category Details' },
             {path: 'faq',component:FaqComponent,title: 'FAQ' },
-            {path: 'about',component:FaqComponent,title: 'About' },
+            {path: 'about',component:AboutComponent,title: 'About' },
             {path: 'services',component:ServicesComponent,title: 'Services' }
         ] 
     },
@@ -87,6 +90,10 @@ export const routes: Routes = [
           { path: 'transferCreate', component: CreateTransferComponent, title: 'Admin Create a Transfer', canActivate: [authGuardGuard] },
           { path: 'transferUpdate/:id', component: UpdateTransferComponent, title: 'Admin Update a Transfer', canActivate: [authGuardGuard] },
       
+          // Home Page - About Page
+          { path: 'homepage', component: UpdateHomepageComponent, title: 'Admin Update a Home Page', canActivate: [authGuardGuard] },
+          { path: 'aboutpage', component: UpdateAboutpageComponent, title: 'Admin Update a About Page', canActivate: [authGuardGuard] },
+
           // redirect افتراضي لأي /admin يذهب للـ dashboard
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       

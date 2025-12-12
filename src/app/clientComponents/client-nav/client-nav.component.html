@@ -10,35 +10,37 @@
   
       <!-- القائمة في الوسط -->
       <ul class="nav-links">
-        <li><a routerLink="/"routerLinkActive="active-link">Home</a></li>
+        <li><a routerLink="/" routerLinkActive="active-link">Startseite</a></li>
         <!-- <li><a routerLink="tour"routerLinkActive="active-link">Tours</a></li> -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle">Hurghada Tours</a>
+          <a class="nav-link dropdown-toggle">Hurghada Touren</a>
         
           <ul class="dropdown-menu">
-            <li><a [routerLink]="['/categrytourDetail', 14]">Cairo Tours</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 10]">Luxor Tours</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 12]">Safari Tours</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 11]">Sea Tours</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 13]">Things To Do In Hurghada</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 14]">Kairo Touren</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 10]">Luxor Touren</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 12]">Safari Touren</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 11]">Meer Touren</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 13]">Aktivitäten in Hurghada</a></li>
+            
           </ul>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle">Marsa Alam Tours</a>
-          <ul class="dropdown-menu">
-            <li><a [routerLink]="['/categrytourDetail', 5]">Cairo Tours</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 6]">Luxor Tours</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 8]">Safari Tours</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 7]">Sea Tours</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 9]">Things To Do In Hurghada</a></li>
-          </ul>
+          <a class="nav-link dropdown-toggle">Marsa Alam Touren</a>
+<ul class="dropdown-menu">
+  <li><a [routerLink]="['/categrytourDetail', 5]">Kairo Touren</a></li>
+  <li><a [routerLink]="['/categrytourDetail', 6]">Luxor Touren</a></li>
+  <li><a [routerLink]="['/categrytourDetail', 8]">Safari Touren</a></li>
+  <li><a [routerLink]="['/categrytourDetail', 7]">Meer Touren</a></li>
+  <li><a [routerLink]="['/categrytourDetail', 9]">Aktivitäten in Hurghada</a></li>
+</ul>
+
         </li>
-   
-        <li><a routerLink="transfer"routerLinkActive="active-link">Transfers</a></li>
-        <li><a routerLink="/"routerLinkActive="active-link">Blogs</a></li>
-        <li><a routerLink="/"routerLinkActive="active-link">Reviews</a></li>
-        <li><a routerLink="/"routerLinkActive="active-link">About</a></li>
+        <li><a routerLink="transfer" routerLinkActive="active-link">Transfers</a></li>
+        <li><a routerLink="/" routerLinkActive="active-link">Blogs</a></li>
+        <li><a routerLink="/" routerLinkActive="active-link">Bewertungen</a></li>
+        <li><a routerLink="about" routerLinkActive="active-link">Über uns</a></li>
+        
       </ul>
   
       <!-- Social Icons على اليمين s-->
@@ -70,7 +72,7 @@
   </div>
 
   <ul class="offcanvas-links">
-    <li><a routerLink="/" routerLinkActive="active-link" (click)="closeOffcanvas()">Home</a></li>
+    <li><a routerLink="/" routerLinkActive="active-link" (click)="closeOffcanvas()">Startseite</a></li>
     
     <!-- Hurghada Tours Dropdown -->
     <li class="offcanvas-dropdown">
@@ -79,11 +81,11 @@
         <i class="fas fa-chevron-down"></i>
       </a>
       <ul class="dropdown-submenu" [class.open]="activeDropdown === 'hurghada'">
-        <li><a [routerLink]="['/categrytourDetail', 14]" (click)="closeOffcanvas()">Cairo Tours</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 10]" (click)="closeOffcanvas()">Luxor Tours</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 12]" (click)="closeOffcanvas()">Safari Tours</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 11]" (click)="closeOffcanvas()">Sea Tours</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 13]" (click)="closeOffcanvas()">Things To Do In Hurghada</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 14]" (click)="closeOffcanvas()">Kairo Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 10]" (click)="closeOffcanvas()">Luxor Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 12]" (click)="closeOffcanvas()">Safari Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 11]" (click)="closeOffcanvas()">Sea Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 13]" (click)="closeOffcanvas()">Aktivitäten in Hurghada</a></li>
       </ul>
     </li>
 
@@ -94,18 +96,18 @@
         <i class="fas fa-chevron-down"></i>
       </a>
       <ul class="dropdown-submenu" [class.open]="activeDropdown === 'marsa'">
-        <li><a [routerLink]="['/categrytourDetail', 5]" (click)="closeOffcanvas()">Cairo Tours</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 6]" (click)="closeOffcanvas()">Luxor Tours</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 8]" (click)="closeOffcanvas()">Safari Tours</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 7]" (click)="closeOffcanvas()">Sea Tours</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 9]" (click)="closeOffcanvas()">Things To Do In Hurghada</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 5]" (click)="closeOffcanvas()">Kairo Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 6]" (click)="closeOffcanvas()">Luxor Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 8]" (click)="closeOffcanvas()">Safari Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 7]" (click)="closeOffcanvas()">Sea Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 9]" (click)="closeOffcanvas()">Aktivitäten in Hurghada</a></li>
       </ul>
     </li>
 
     <li><a routerLink="transfer" routerLinkActive="active-link" (click)="closeOffcanvas()">Transfers</a></li>
     <li><a routerLink="/" (click)="closeOffcanvas()">Blogs</a></li>
-    <li><a routerLink="/" (click)="closeOffcanvas()">Reviews</a></li>
-    <li><a routerLink="/" (click)="closeOffcanvas()">About</a></li>
+    <li><a routerLink="/" (click)="closeOffcanvas()">Bewertungen</a></li>
+    <li><a routerLink="about" (click)="closeOffcanvas()">Über uns</a></li>
   </ul>
 
   <!-- Social Icons in Offcanvas -->

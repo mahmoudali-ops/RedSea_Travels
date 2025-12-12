@@ -1,0 +1,197 @@
+<div class="homepage-edit-container">
+  <h2>Update Home Page</h2>
+
+  <div *ngIf="isLoading" class="loading">
+    Loading data...
+  </div>
+
+  <form *ngIf="!isLoading" [formGroup]="homeForm" (ngSubmit)="onSubmit()" class="homepage-form">
+
+    <!-- Logo Section -->
+    <div class="form-section">
+      <h3>Logo</h3>
+
+      <div class="image-upload-section">
+        <!-- Old Image -->
+        <div class="old-image-container" *ngIf="logoOldImage">
+          <h4>Current Image:</h4>
+          <div class="image-preview">
+            <img [src]="logoOldImage" alt="Old Logo" class="old-image">
+            <div class="image-label">Current</div>
+          </div>
+        </div>
+
+        <!-- File Upload -->
+        <div class="file-upload-container">
+          <label for="logoUpload">Upload New Image:</label>
+          <input 
+            type="file" 
+            id="logoUpload" 
+            accept="image/*" 
+            (change)="onLogoFileChange($event)"
+            class="file-input"
+          >
+        </div>
+
+        <!-- Preview -->
+        <div class="preview-container" *ngIf="logoPreview">
+          <h4>New Preview:</h4>
+          <div class="image-preview">
+            <img [src]="logoPreview" alt="Logo Preview" class="preview-image">
+            <div class="image-label">Preview</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="form-section">
+      <h3>Social Links</h3>
+
+      <div class="form-group">
+        <label for="faceBookLink">Facebook Link:</label>
+        <input 
+          type="url" 
+          id="faceBookLink" 
+          formControlName="faceBookLink"
+          placeholder="https://facebook.com/..."
+          class="form-control"
+        >
+        <div *ngIf="homeForm.get('faceBookLink')?.invalid && homeForm.get('faceBookLink')?.touched" 
+             class="error-message">
+          This field is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="instagramLink">Instagram Link:</label>
+        <input 
+          type="url" 
+          id="instagramLink" 
+          formControlName="instagramLink"
+          placeholder="https://instagram.com/..."
+          class="form-control"
+        >
+        <div *ngIf="homeForm.get('instagramLink')?.invalid && homeForm.get('instagramLink')?.touched" 
+             class="error-message">
+          This field is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="tiktokLink">TikTok Link:</label>
+        <input 
+          type="url" 
+          id="tiktokLink" 
+          formControlName="tiktokLink"
+          placeholder="https://tiktok.com/@..."
+          class="form-control"
+        >
+        <div *ngIf="homeForm.get('tiktokLink')?.invalid && homeForm.get('tiktokLink')?.touched" 
+             class="error-message">
+          This field is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Images (Carousel) -->
+    <div class="form-section">
+      <div class="section-header">
+        <h3>Main Carousel Images</h3>
+        <button type="button" (click)="addNewMainImg()" class="btn-add">
+          + Add New Image
+        </button>
+      </div>
+
+      <div formArrayName="mainImgs" class="main-images-container">
+        <div *ngFor="let imgGroup of mainImgsArray.controls; let i = index" 
+             [formGroupName]="i" 
+             class="main-image-item">
+
+          <div class="main-image-header">
+            <h4>Image {{ i + 1 }}</h4>
+            <button type="button" (click)="removeMainImg(i)" class="btn-remove" *ngIf="mainImgsArray.length > 1">
+              Remove
+            </button>
+          </div>
+
+          <!-- Old Image -->
+          <div class="image-upload-section">
+            <div class="old-image-container" *ngIf="getMainImgOldImage(i)">
+              <h5>Current Image:</h5>
+              <div class="image-preview">
+                <img [src]="getMainImgOldImage(i)" alt="Old Carousel Image" class="old-image">
+                <div class="image-label">Current</div>
+              </div>
+            </div>
+
+            <!-- File Upload -->
+            <div class="file-upload-container">
+              <label>Upload New Image:</label>
+              <input 
+                type="file" 
+                [id]="'mainImgUpload' + i"
+                accept="image/*" 
+                (change)="onMainImgFileChange($event, i)"
+                class="file-input"
+              >
+            </div>
+
+            <!-- Preview -->
+            <div class="preview-container" *ngIf="mainImgsPreviews[i]">
+              <h5>New Preview:</h5>
+              <div class="image-preview">
+                <img [src]="mainImgsPreviews[i]" alt="New Preview" class="preview-image">
+                <div class="image-label">Preview</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Title and Description -->
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label [for]="'title' + i">Image Title:</label>
+              <input 
+                type="text" 
+                [id]="'title' + i"
+                formControlName="title"
+                placeholder="Enter image title"
+                class="form-control"
+              >
+              <div *ngIf="mainImgsArray.at(i).get('title')?.invalid && mainImgsArray.at(i).get('title')?.touched" 
+                   class="error-message">
+                This field is required
+              </div>
+            </div>
+
+            <div class="form-group half-width">
+              <label [for]="'description' + i">Image Description:</label>
+              <textarea 
+                [id]="'description' + i"
+                formControlName="description"
+                placeholder="Enter image description"
+                class="form-control"
+                rows="3"
+              ></textarea>
+              <div *ngIf="mainImgsArray.at(i).get('description')?.invalid && mainImgsArray.at(i).get('description')?.touched" 
+                   class="error-message">
+                This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        [disabled]="homeForm.invalid || isSubmitting" 
+        class="btn-submit"
+      >
+        {{ isSubmitting ? 'Updating...' : 'Save Changes' }}
+      </button>
+    </div>
+  </form>
+</div>
