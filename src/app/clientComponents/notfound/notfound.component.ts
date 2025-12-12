@@ -6,7 +6,7 @@ import { ClientNavComponent } from "../client-nav/client-nav.component";
 @Component({
   selector: 'app-notfound',
   standalone: true,
-  imports: [CommonModule, ClientNavComponent],
+  imports: [CommonModule],
   templateUrl: './notfound.component.html',
   styleUrl: './notfound.component.css'
 })

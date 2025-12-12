@@ -919,4 +919,43 @@ body.offcanvas-open {
     opacity: 0.6;
     transform: translate(-50%, -50%) scale(1.05);
   }
+}/* =======================
+   DROPDOWN MENU BEFORE SCROLL
+======================= */
+.main-nav:not(.scrolled) .dropdown-menu {
+  background: rgba(15, 15, 25, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 215, 0, 0.2) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* النص قبل الـ scroll */
+.main-nav:not(.scrolled) .dropdown-menu a {
+  color: #ffd700 !important; /* اللون دهبي */
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* تأثير hover قبل الـ scroll */
+.main-nav:not(.scrolled) .dropdown-menu a:hover {
+  color: #ffffff !important;
+  background: rgba(255, 215, 0, 0.15) !important;
+}
+
+/* السهم الصغير فوق الـ dropdown (اختياري) */
+.main-nav:not(.scrolled) .nav-item.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(255, 215, 0, 0.2);
+}
+
+/* تعديل hover للـ parent link */
+.main-nav:not(.scrolled) .nav-links .nav-item.dropdown > a:hover {
+  color: #ffd700 !important;
 }
