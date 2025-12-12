@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../../core/environments/environments';
 import { IAbout } from '../../core/interfaces/iabout';
 import { CommonModule, NgClass } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-update-aboutpage',
@@ -13,10 +14,12 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './update-aboutpage.component.html',
   styleUrl: './update-aboutpage.component.css'
 })
-export class UpdateAboutpageComponent implements OnInit {
+export class UpdateAboutpageComponent implements OnInit ,OnDestroy {
 
   private readonly toasterService=inject(ToastrService)
-  
+  DataSUbs:WritableSignal<Subscription|null>=signal(null);
+
+
   aboutForm: FormGroup;
   oldImage: string = '';
   imagePreview: string | ArrayBuffer | null = null;
@@ -35,14 +38,14 @@ export class UpdateAboutpageComponent implements OnInit {
   }
 
   loadAboutPage() {
-    this.http.get<IAbout>(`${environment.BaseUrl}/api/AboutPage`).subscribe(res => {
+ this.DataSUbs.set(  this.http.get<IAbout>(`${environment.BaseUrl}/api/AboutPage`).subscribe(res => {
       this.aboutForm.patchValue({
         title: res.title,
         description: res.description
       });
       this.oldImage = res.imageCover; // حفظ الصورة القديمة للعرض
       this.imagePreview = res.imageCover; // عرض الصورة القديمة أولًا
-    });
+    }));
   }
 
   onFileChange(event: any) {
@@ -81,5 +84,12 @@ export class UpdateAboutpageComponent implements OnInit {
     });
   }
   
+
+
+  ngOnDestroy(): void { 
+    if(this.DataSUbs()){
+      this.DataSUbs()?.unsubscribe();
+    }
+   }
 }
 

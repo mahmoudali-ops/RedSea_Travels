@@ -1,7 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../core/environments/environments';
 import { ToastrService } from 'ngx-toastr';
@@ -28,9 +28,10 @@ export interface MainImg {
   templateUrl: './update-homepage.component.html',
   styleUrl: './update-homepage.component.css'
 })
-export class UpdateHomepageComponent implements OnInit {
+export class UpdateHomepageComponent implements OnInit ,OnDestroy {
 
   private readonly toasterService=inject(ToastrService)
+    DataSUbs:WritableSignal<Subscription|null>=signal(null);
   
   homeForm: FormGroup;
   isSubmitting = false;
@@ -79,7 +80,7 @@ export class UpdateHomepageComponent implements OnInit {
 
   loadHomeData(): void {
     this.isLoading = true;
-    this.http.get<IHome>(`${environment.BaseUrl}/api/HomePage`).subscribe({
+    this.DataSUbs.set( this.http.get<IHome>(`${environment.BaseUrl}/api/HomePage`).subscribe({
       next: (data) => {
         this.homeData = data;
         this.logoOldImage = data.logoImg;
@@ -90,7 +91,7 @@ export class UpdateHomepageComponent implements OnInit {
         console.error('Error loading home data:', error);
         this.isLoading = false;
       }
-    });
+    }));
   }
 
   populateForm(data: IHome): void {
@@ -224,4 +225,11 @@ export class UpdateHomepageComponent implements OnInit {
   getMainImgOldImage(index: number): string {
     return this.mainImgsArray.at(index).get('oldImageCover')?.value || '';
   }
+
+
+  ngOnDestroy(): void { 
+    if(this.DataSUbs()){
+      this.DataSUbs()?.unsubscribe();
+    }
+   }
 }
