@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClientNavComponent } from "../client-nav/client-nav.component";
 
 @Component({
   selector: 'app-notfound',
