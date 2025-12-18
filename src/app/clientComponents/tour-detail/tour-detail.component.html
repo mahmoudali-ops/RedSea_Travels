@@ -30,35 +30,35 @@
         <!-- Tour Description -->
         <section class="tour-description-section mb-5">
           <div class="info-card">
-            <h2 class="section-title">Tour Description</h2>
+            <h2 class="section-title">Tourbeschreibung</h2>
             <p class="description-text">{{ DetailedTour()?.description }}</p>
             
             <div class="tour-info-grid">
               <div class="info-item">
                 <i class="fas fa-clock"></i>
                 <div>
-                  <span class="info-label">Duration</span>
+                  <span class="info-label">Dauer</span>
                   <span class="info-value"> {{ DetailedTour()?.duration }} Stunden</span>
                 </div>
               </div>
               <div class="info-item">
                 <i class="fas fa-map-marker-alt"></i>
                 <div>
-                  <span class="info-label">Start Location</span>
+                  <span class="info-label">Startort</span>
                   <span class="info-value"> {{ DetailedTour()?.startLocation }}</span>
                 </div>
               </div>
               <div class="info-item">
                 <i class="fas fa-flag-checkered"></i>
                 <div>
-                  <span class="info-label">End Location</span>
+                  <span class="info-label">Endstandort</span>
                   <span class="info-value"> {{ DetailedTour()?.endLocation }}</span>
                 </div>
               </div>
               <div class="info-item">
                 <i class="fas fa-language"></i>
                 <div>
-                  <span class="info-label">Languages</span>
+                  <span class="info-label">Richtlinien</span>
                   <span class="info-value">{{ DetailedTour()?.languageOptions }}</span>
                 </div>
               </div>
@@ -69,7 +69,7 @@
         <!-- Image Carousel -->
         @if (DetailedTour()?.tourImgs && DetailedTour()!.tourImgs.length > 0) {
         <section class="carousel-section mb-5">
-          <h2 class="section-title">Tour Gallery</h2>
+          <h2 class="section-title">Tour-Galerie</h2>
           <div class="carousel-container">
             <div class="carousel-slide">
               <img 
@@ -117,7 +117,7 @@
         <!-- What's Included -->
         @if (DetailedTour()?.includeds && DetailedTour()!.includeds.length > 0) {
         <section class="mb-5">
-          <h2 class="section-title">What's Included</h2>
+          <h2 class="section-title">Was ist im Lieferumfang enthalten?</h2>
           <div class="info-card">
             @for (item of DetailedTour()?.includeds; track item.text) {
             <div class="included-item">
@@ -135,7 +135,7 @@
         <!-- What's Not Included -->
       @if (DetailedTour()?.notIncludeds && DetailedTour()!.notIncludeds.length > 0) {
   <section class="not-included-section mb-5">
-    <h2 class="section-title">What's Not Included</h2>
+    <h2 class="section-title">Was nicht enthalten ist</h2>
     <div class="not-included-card">
       @for (item of DetailedTour()?.notIncludeds; track item.text) {
         <div class="not-included-point">
@@ -150,65 +150,66 @@
   </section>
 }
 <section class="gold-info-section mb-5">
-  <h2 class="section-title">Knew Before You Go</h2>
+  <h2 class="section-title">Wissenswertes vor der Reise</h2>
 
   <ul class="info-list">
     <li>
       <i class="fas fa-info-circle"></i>
-      Hotel transfers are included for most locations in Marsa Alam. Additional charges may apply for remote areas.
+      Hoteltransfers sind für die meisten Orte in Marsa Alam inklusive. Für abgelegene Gebiete können zusätzliche Kosten anfallen.
     </li>
 
     <li>
       <i class="fas fa-user-check"></i>
-      Suitable for beginners and experienced snorkelers. A guide will be available to assist.
+      Geeignet für Anfänger und erfahrene Schnorchler. Ein Guide steht zur Unterstützung zur Verfügung.
     </li>
 
     <li>
       <i class="fas fa-fish"></i>
-      Sightings of sea turtles and dugongs are common but cannot be guaranteed, as they are wild animals.
+      Sichtungen von Meeresschildkröten und Dugongs sind häufig, können jedoch nicht garantiert werden, da es sich um Wildtiere handelt.
     </li>
 
     <li>
       <i class="fas fa-utensils"></i>
-      A buffet lunch and soft drinks are included. Please inform us in advance of any dietary restrictions.
+      Ein Buffet-Mittagessen und Softdrinks sind inklusive. Bitte informieren Sie uns im Voraus über eventuelle Ernährungsanforderungen.
     </li>
 
     <li>
       <i class="fas fa-child"></i>
-      Children must be accompanied by an adult. The trip is not recommended for infants under 3 years old.
+      Kinder müssen von einem Erwachsenen begleitet werden. Der Ausflug wird für Kleinkinder unter 3 Jahren nicht empfohlen.
     </li>
   </ul>
 </section>
 
 <section class="gold-info-section mb-5">
-  <h2 class="section-title">Payment Policy</h2>
+  <h2 class="section-title">Zahlungsrichtlinien</h2>
 
   <ul class="info-list">
 
     <li>
       <i class="fas fa-credit-card"></i>
-      Reserve now & pay later
+      Jetzt reservieren & später bezahlen
     </li>
 
     <li>
       <i class="fas fa-coins"></i>
-      Tour price currency is set to Euro but you can pay in USD or British pound
+      Die Tourpreise sind in Euro festgelegt, eine Zahlung in USD oder Britischem Pfund ist ebenfalls möglich
     </li>
 
     <li>
       <i class="fas fa-tags"></i>
-      The prices quoted per person per tour and prices are always updated to ensure you receive the best possible price
+      Die angegebenen Preise gelten pro Person und Tour und werden regelmäßig aktualisiert, um Ihnen stets den bestmöglichen Preis zu bieten
     </li>
 
     <li>
       <i class="fas fa-award"></i>
-      Others may offer cheaper prices, but we promise unmatched quality, personalized care, and a memorable experience.
+      Andere Anbieter mögen günstigere Preise haben, wir garantieren jedoch höchste Qualität, persönliche Betreuung und ein unvergessliches Erlebnis.
     </li>
 
   </ul>
 </section>
+
 <section class="gold-video-section mb-5">
-  <h2 class="section-title">Tour Video</h2>
+  <h2 class="section-title">Tourvideo</h2>
 
   <div class="video-wrapper">
     <iframe 
