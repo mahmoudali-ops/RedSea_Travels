@@ -35,7 +35,11 @@ export class HomeComponent implements  OnInit {
 
 
   AllPopularToursList:WritableSignal<ITour[]>=signal([]);  
+  AllPopularToursListMarsaAlam:WritableSignal<ITour[]>=signal([]);  
+
   TourSUbs:WritableSignal<Subscription|null>=signal(null);
+  TourSUbsMarsa:WritableSignal<Subscription|null>=signal(null);
+
 
   PopularDestanion:WritableSignal<IDestnation[]>=signal([]);
   destnationSUbs:WritableSignal<Subscription|null>=signal(null);
@@ -45,15 +49,15 @@ export class HomeComponent implements  OnInit {
   ngOnInit(): void {
 
   
-    this.destnationSUbs.set( this.destnationservice.getAllDestnation().subscribe({
-       next:(res)=>{
-         this.PopularDestanion.set(res.data);
-         console.log(res.data);
-       },
-       error:(err:HttpErrorResponse)=>{
-         console.log(err.message);
-       }
-     }));
+    // this.destnationSUbs.set( this.destnationservice.getAllDestnation().subscribe({
+    //    next:(res)=>{
+    //      this.PopularDestanion.set(res.data);
+    //      console.log(res.data);
+    //    },
+    //    error:(err:HttpErrorResponse)=>{
+    //      console.log(err.message);
+    //    }
+    //  }));
  
     this.TourSUbs.set( this.TourService.getAllTours().subscribe({
        next:(res)=>{
@@ -65,6 +69,19 @@ export class HomeComponent implements  OnInit {
        }
        
      }));
+
+     this.TourSUbsMarsa.set( this.TourService.getAllMarsaTours().subscribe({
+      next:(res)=>{
+        this.AllPopularToursListMarsaAlam;;this.AllPopularToursListMarsaAlam.set(res.data);
+        console.log(res.data);
+      },
+      error:(err:HttpErrorResponse)=>{
+        console.log(err.message);
+      }
+      
+    }));
+
+     
  
      this.HurghdadaCatSbss.set( this.CattourService.getAllCAtegorytours().subscribe({
        next:(res)=>{
@@ -86,7 +103,7 @@ export class HomeComponent implements  OnInit {
   }
   
   get MarsaAlamTours() {
-    return this.AllPopularToursList().filter(t => 
+    return this.AllPopularToursListMarsaAlam().filter(t => 
       t.destinationName?.toLowerCase() === 'marsa alam'
     );
   }
@@ -95,10 +112,14 @@ export class HomeComponent implements  OnInit {
     if(this.TourSUbs()){
       this.TourSUbs()?.unsubscribe();
     }  
-  
-    if(this.destnationSUbs()){
-      this.destnationSUbs()?.unsubscribe();
+
+    if(this.TourSUbsMarsa()){
+      this.TourSUbsMarsa()?.unsubscribe();
     }
+  
+    // if(this.destnationSUbs()){
+    //   this.destnationSUbs()?.unsubscribe();
+    // }
   
     if(this.HurghdadaCatSbss()){
       this.HurghdadaCatSbss()?.unsubscribe();

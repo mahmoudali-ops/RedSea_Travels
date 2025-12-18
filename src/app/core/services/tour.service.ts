@@ -15,6 +15,10 @@ export class TourService {
     return this.httpcleint.get(`${environment.BaseUrl}/api/Tours/client`);
   }
   
+  getAllMarsaTours():Observable<any>{
+    return this.httpcleint.get(`${environment.BaseUrl}/api/Tours/client/marsaAllam`);
+  }
+
   getAllTrueTours(pageIndex: number, pageSize: number): Observable<any> {
     const params = {
       pageIndex: pageIndex,

@@ -13,7 +13,6 @@ import { LoginComponent } from './adminCompoents/login/login.component';
 import { UsersComponent } from './adminCompoents/users/users.component';
 import { RegisterComponent } from './adminCompoents/register/register.component';
 import { DashboardComponent } from './adminCompoents/dashboard/dashboard.component';
-import { CategorytourComponent } from './clientComponents/categorytour/categorytour.component';
 import { TOurDetailComponent } from './clientComponents/tour-detail/tour-detail.component';
 import { HotelDetailsComponent } from './clientComponents/hotel-details/hotel-details.component';
 import { TransfersDetailComponent } from './clientComponents/transfers-detail/transfers-detail.component';
@@ -46,7 +45,6 @@ export const routes: Routes = [
             {path: 'home',component:HomeComponent,title: 'Home' },  
             {path: 'tour',component:ToursComponent,title: 'Tours' },
             {path: 'transfer',component:TransferComponent,title: 'Transfers' },
-            {path: 'categrytour',component:CategorytourComponent,title: 'Tours Category' },
             {path: 'tourDetail/:id',component:TOurDetailComponent,title: 'Tour Details' },
             {path: 'transferDetail/:id',component:TransfersDetailComponent,title: 'Transfers Details' },
             {path: 'categrytourDetail/:id',component:CategoryTourDetailComponent,title: 'Tours Category Details' },

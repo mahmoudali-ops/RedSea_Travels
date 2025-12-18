@@ -46,7 +46,7 @@
       <!-- الصورة على الشمال -->
       <div class="col-lg-5 mb-4 mb-lg-0">
         <div class="about-image-wrapper">
-          <img src="../../../assets/images/aboutimage.jpg" 
+          <img src="assets/images/aboutimage.jpg" 
                alt="Über uns" 
                class="img-fluid about-image">
         </div>
@@ -156,7 +156,7 @@ autoplay-disable-on-interaction="false"
         
       </div>
       <div class="row">
-        @for (tour of HurghadaTours.slice(0,5); track tour.id) {
+        @for (tour of HurghadaTours.slice(0,8); track tour.id) {
           <div class="col-md-6 col-lg-3 mb-4" 
           [routerLink]="['/tourDetail', tour.id]"
                     >
@@ -165,7 +165,7 @@ autoplay-disable-on-interaction="false"
                 <img [src]="tour.imageCover" [alt]="tour.title" class="img-fluid">
                 <div class="destination-overlay-new">
                   <h4>{{tour.title}}</h4>
-                  <p>{{tour.description.slice(0,10)}}</p>
+                  <p>{{tour.description|termtext}}</p>
                 </div>
               </div>
             </div>
@@ -175,7 +175,7 @@ autoplay-disable-on-interaction="false"
         
       </div>
       <div class="text-center mt-4">
-        <button routerLink="/destnation" class="btn btn-outline-primary">Alle Reiseziele entdecken</button>
+        <button routerLink="/categrytourDetail/14" class="btn btn-outline-primary">Alle Reiseziele entdecken</button>
       </div>
     </div>
   </section>
@@ -189,7 +189,7 @@ autoplay-disable-on-interaction="false"
           
         </div>
         <div class="row">
-          @for (tour of MarsaAlamTours.slice(0,5); track tour.id) {
+          @for (tour of MarsaAlamTours; track tour.id) {
             <div class="col-md-6 col-lg-3 mb-4" [routerLink]="['/tourDetail', tour.id]" >
               <div class="destination-card-new">
                 <div class="destination-image-new">
@@ -206,7 +206,7 @@ autoplay-disable-on-interaction="false"
           
         </div>
         <div class="text-center mt-4">
-          <button routerLink="/destnation" class="btn btn-outline-primary">Alle Reiseziele entdecken</button>
+          <button routerLink="/categrytourDetail/5" class="btn btn-outline-primary">Alle Reiseziele entdecken</button>
         </div>
       </div>
     </section>
