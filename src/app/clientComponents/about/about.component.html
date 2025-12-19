@@ -2,7 +2,7 @@
 
     <!-- Hero Image -->
     <div class="about-hero">
-      <img src="assets/images/destantion1.jpg" alt="Über uns Bild" />
+      <img [src]="AboutPageContent()?.imageCover" alt="Über uns Bild" />
       <div class="hero-overlay">
         <h1>Über Uns</h1>
       </div>
@@ -10,18 +10,9 @@
   
     <!-- About Content -->
     <div class="about-content">
-      <h2 class="section-title">Wer Wir Sind</h2>
+      <h2 class="section-title">{{AboutPageContent()?.title}}</h2>
       <p class="about-text">
-        Wir sind ein engagiertes Team, das sich darauf spezialisiert hat,
-        professionelle und zuverlässige Dienstleistungen anzubieten. Unsere
-        Mission ist es, höchste Qualität zu liefern, Vertrauen aufzubauen und
-        langfristige Partnerschaften mit unseren Kunden zu schaffen.
-      </p>
-  
-      <p class="about-text">
-        Mit jahrelanger Erfahrung, moderner Technologie und einem starken Fokus
-        auf Kundenzufriedenheit arbeiten wir jeden Tag daran, Erwartungen zu
-        übertreffen und innovative Lösungen zu entwickeln.
+       {{AboutPageContent()?.description}}
       </p>
     </div>
   

@@ -110,16 +110,34 @@
     <div class="row g-2">
       <div class="col-6">
         <div class="form-group mb-3">
-          <label class="form-label"><i class="fas fa-folder"></i> Category ID</label>
-          <input type="number" class="form-control" formControlName="fkCategoryId" placeholder="Category ID" />
+          <label class="form-label">
+            <i class="fas fa-folder"></i> Category
+          </label>
+      
+          <select class="form-select" formControlName="fkCategoryId">
+            <option value="" disabled>Choose Category</option>
+            <option *ngFor="let cat of categories" [value]="cat.id">
+              {{ cat.name }}
+            </option>
+          </select>
         </div>
       </div>
+      
       <div class="col-6">
         <div class="form-group mb-3">
-          <label class="form-label"><i class="fas fa-map-pin"></i> Destination ID</label>
-          <input type="number" class="form-control" formControlName="fkDestinationId" placeholder="Destination ID" />
+          <label class="form-label">
+            <i class="fas fa-map-pin"></i> Destination
+          </label>
+      
+          <select class="form-select" formControlName="fkDestinationId">
+            <option value="" disabled>Choose Destination</option>
+            <option *ngFor="let dest of destinations" [value]="dest.id">
+              {{ dest.name }}
+            </option>
+          </select>
         </div>
       </div>
+      
     </div>
 
     <!-- Active Checkbox -->

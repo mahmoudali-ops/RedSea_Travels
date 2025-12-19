@@ -12,13 +12,15 @@ import { ICatTour } from '../../core/interfaces/icat-tour';
 import { TermtextPipe } from '../../core/pipes/termtext.pipe';
 import { isPlatformBrowser, NgClass } from '@angular/common';
 import { ClientFooterComponent } from '../client-footer/client-footer.component';
+import { HomeService } from '../../core/services/home.service';
+import { IHome } from '../../adminCompoents/update-homepage/update-homepage.component';
 
 register();
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink,TermtextPipe,ClientFooterComponent],
+  imports: [RouterLink,TermtextPipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],   // ← ← المهم هنا
 
   templateUrl: './home.component.html',
@@ -27,12 +29,14 @@ register();
 export class HomeComponent implements  OnInit {
   
 
-
+  private readonly homepageService=inject(HomeService);
   private readonly destnationservice=inject(DestnatoinService);
   private readonly TourService=inject(TourService);
   private readonly CattourService=inject(CattourService)
   private readonly router=inject(Router);
 
+  HomepgeContent:WritableSignal<IHome|null>=signal(null); 
+  HomeSubs:WritableSignal<Subscription|null>=signal(null);
 
   AllPopularToursList:WritableSignal<ITour[]>=signal([]);  
   AllPopularToursListMarsaAlam:WritableSignal<ITour[]>=signal([]);  
@@ -46,18 +50,12 @@ export class HomeComponent implements  OnInit {
 
   AllPopularHurghadaCat:WritableSignal<ICatTour[]>=signal([]);  
   HurghdadaCatSbss:WritableSignal<Subscription|null>=signal(null);
-  ngOnInit(): void {
 
   
-    // this.destnationSUbs.set( this.destnationservice.getAllDestnation().subscribe({
-    //    next:(res)=>{
-    //      this.PopularDestanion.set(res.data);
-    //      console.log(res.data);
-    //    },
-    //    error:(err:HttpErrorResponse)=>{
-    //      console.log(err.message);
-    //    }
-    //  }));
+
+  ngOnInit(): void {
+    this.LoadHomepageContent();
+   
  
     this.TourSUbs.set( this.TourService.getAllTours().subscribe({
        next:(res)=>{
@@ -96,6 +94,20 @@ export class HomeComponent implements  OnInit {
     
    }
 
+
+   LoadHomepageContent(){
+    this.HomeSubs.set(
+      this.homepageService.getHomePage().subscribe({
+      next:(res)=>{
+        this.HomepgeContent.set(res);
+      },
+      error:(err:HttpErrorResponse)=>{
+        console.log(err.message);
+      }
+    }));  }
+
+
+
   get HurghadaTours() {
     return this.AllPopularToursList().filter(t => 
       t.destinationName?.toLowerCase() === 'hurghada'
@@ -125,7 +137,9 @@ export class HomeComponent implements  OnInit {
       this.HurghdadaCatSbss()?.unsubscribe();
     }
   
-  
+    if(this.HomeSubs()){
+      this.HomeSubs()?.unsubscribe();
+    }
   }
 
   

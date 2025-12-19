@@ -1,5 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { HomeService } from '../../core/services/home.service';
 
 @Component({
   selector: 'app-client-nav',
@@ -11,6 +12,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class ClientNavComponent implements OnInit {
   isScrolledd = false;
   isBrowser = typeof window !== 'undefined';
+  homeService = inject(HomeService);
+
 
 
   @HostListener('window:scroll')

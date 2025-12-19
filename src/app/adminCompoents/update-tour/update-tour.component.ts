@@ -31,6 +31,24 @@ export class UpdateTourComponent {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
+  destinations = [
+    { id: 8, name: 'Marsa Alam' },
+    { id: 9, name: 'Hurghada' }
+  ];
+categories = [
+  { id: 5, name: 'Cairo Tours Marsa Alam' },
+  { id: 6, name: 'Luxor Tours Marsa Alam' },
+  { id: 7, name: 'Sea Tours Marsa Alam' },
+  { id: 8, name: 'Safari Tours Marsa Alam' },
+  { id: 9, name: 'Things To Do In Marsa Alam' },
+  { id: 10, name: 'Luxor Tours Hurghada' },
+  { id: 11, name: 'Sea Tours Hurghada' },
+  { id: 12, name: 'Safari Tours Hurghada' },
+  { id: 13, name: 'Things To Do In Hurghada' },
+  { id: 14, name: 'Cairo Tours Hurghada' }
+];
+  
+
   tourForm: FormGroup;
   selectedFile: File | null = null;
   imagePreview: string | ArrayBuffer | null = null;
@@ -80,71 +98,123 @@ export class UpdateTourComponent {
   get imagesList() { return this.tourForm.get('imagesList') as FormArray; }
 
   // ========== Load Tour ==========
-  loadTour(id: number) {
-    this.tourService.getDetaildedTOur(id).subscribe({
-      next: (tour: any) => {
-        // Fill main form
-        this.tourForm.patchValue({
-          title: tour.title,
-          description: tour.description,
-          metaDescription: tour.metaDescription,
-          metaKeyWords: tour.metaKeyWords,
-          referenceName: tour.referenceName,
-          isActive: tour.isActive,
-          linkVideo: tour.linkVideo,
-          languageOptions: tour.languageOptions,
-          startLocation: tour.startLocation,
-          endLocation: tour.endLocation,
-          duration: tour.duration,
-          price: tour.price,
-          fkCategoryId: tour.fkCategoryId,
-          fkDestinationId: tour.fkDestinationId,
+// ========== Load Tour ==========
+loadTour(id: number) {
+  this.tourService.getDetaildedTOur(id).subscribe({
+    next: (tour: any) => {
+      console.log('Tour data loaded:', tour); // للتأكد من البيانات القادمة
+      
+      // Fill main form
+      this.tourForm.patchValue({
+        title: tour.title,
+        description: tour.description,
+        metaDescription: tour.metaDescription,
+        metaKeyWords: tour.metaKeyWords,
+        referenceName: tour.referenceName,
+        isActive: tour.isActive,
+        linkVideo: tour.linkVideo,
+        languageOptions: tour.languageOptions,
+        startLocation: tour.startLocation,
+        endLocation: tour.endLocation,
+        duration: tour.duration,
+        price: tour.price,
+        // التصحيح: استخدام الأسماء الصحيحة من الـ API
+        fkCategoryId: tour.fK_CategoryID,
+        fkDestinationId: tour.fK_DestinationID,
+      });
+
+      console.log('Form values after patch:', {
+        fkCategoryId: this.tourForm.get('fkCategoryId')?.value,
+        fkDestinationId: this.tourForm.get('fkDestinationId')?.value
+      });
+
+      // Main image
+      this.oldMainImageUrl = tour.imageCover;
+
+      // ========== Clear existing arrays first ==========
+      while (this.includesList.length) this.includesList.removeAt(0);
+      while (this.notIncludedList.length) this.notIncludedList.removeAt(0);
+      while (this.highlightList.length) this.highlightList.removeAt(0);
+      while (this.imagesList.length) this.imagesList.removeAt(0);
+      this.galleryPreview = [];
+
+      // ========== INCLUDES ==========
+      // الـ API يرجع "includeds" وليس "includesList"
+      if (tour.includeds && tour.includeds.length > 0) {
+        console.log('Loading includes:', tour.includeds);
+        tour.includeds.forEach((inc: any) => {
+          this.includesList.push(this.fb.group({ 
+            Text: [inc.text, Validators.required] 
+          }));
         });
-
-        // Main image
-        this.oldMainImageUrl = tour.imageCover; // Assuming tour.imageCover is URL
-
-        // Includes
-        if (tour.includesList) {
-          tour.includesList.forEach((inc: any) => {
-            this.includesList.push(this.fb.group({ Text: [inc.text, Validators.required] }));
-          });
-        }
-
-        // Not Includes
-        if (tour.notIncludedList) {
-          tour.notIncludedList.forEach((ni: any) => {
-            this.notIncludedList.push(this.fb.group({ Text: [ni.text, Validators.required] }));
-          });
-        }
-
-        // Highlights
-        if (tour.highlightList) {
-          tour.highlightList.forEach((hl: any) => {
-            this.highlightList.push(this.fb.group({ Text: [hl.text, Validators.required] }));
-          });
-        }
-
-        // Images
-        if (tour.tourImgs && tour.tourImgs.length > 0) {
-          tour.tourImgs.forEach((img: ITourImg) => {
-            const group = this.fb.group({
-              id: [img.id],
-              Title: [img.title, Validators.required],
-              ReferenceName: [img.referenceName, Validators.required],
-              ImageFile: [null],
-              IsActive: [img.isActive]
-            });
-            this.imagesList.push(group);
-            this.galleryPreview.push(img.imageCarouselUrl);
-          });
-        }
-      },
-      error: () => {
-        this.toaster.error('Failed to load tour data.');
+      } else {
+        // Optional: Add one empty include if none exist
+        this.addInclude();
       }
-    });
-  }
+
+      // ========== NOT INCLUDED ==========
+      // الـ API يرجع "notIncludeds" وليس "notIncludedList"
+      if (tour.notIncludeds && tour.notIncludeds.length > 0) {
+        console.log('Loading not included:', tour.notIncludeds);
+        tour.notIncludeds.forEach((ni: any) => {
+          this.notIncludedList.push(this.fb.group({ 
+            Text: [ni.text, Validators.required] 
+          }));
+        });
+      } else {
+        // Optional: Add one empty not included if none exist
+        this.addNotIncluded();
+      }
+
+      // ========== HIGHLIGHTS ==========
+      // الـ API يرجع "highlights" وليس "highlightList"
+      if (tour.highlights && tour.highlights.length > 0) {
+        console.log('Loading highlights:', tour.highlights);
+        tour.highlights.forEach((hl: any) => {
+          this.highlightList.push(this.fb.group({ 
+            Text: [hl.text, Validators.required] 
+          }));
+        });
+      } else {
+        // Optional: Add one empty highlight if none exist
+        this.addHighlight();
+      }
+
+      // ========== IMAGES ==========
+      // الـ API يرجع "tourImgs" وليس "imagesList"
+      if (tour.tourImgs && tour.tourImgs.length > 0) {
+        console.log('Loading gallery images:', tour.tourImgs);
+        tour.tourImgs.forEach((img: ITourImg) => {
+          const group = this.fb.group({
+            id: [img.id],
+            Title: [img.title, Validators.required],
+            ReferenceName: [img.referenceName, Validators.required],
+            ImageFile: [null], // لا نحتاج لرفع الملف مجدداً إذا كان موجوداً
+            IsActive: [img.isActive]
+          });
+          this.imagesList.push(group);
+          this.galleryPreview.push(img.imageCarouselUrl);
+        });
+      } else {
+        // Optional: Add one empty image slot if none exist
+        this.addImage();
+      }
+
+      // ========== Verify all data loaded ==========
+      console.log('Form arrays after loading:', {
+        includesCount: this.includesList.length,
+        notIncludedCount: this.notIncludedList.length,
+        highlightsCount: this.highlightList.length,
+        imagesCount: this.imagesList.length,
+        formValue: this.tourForm.value
+      });
+    },
+    error: (error) => {
+      console.error('Error loading tour:', error);
+      this.toaster.error('Failed to load tour data.');
+    }
+  });
+}
 
   // ========== Image Handling ==========
   onFileSelected(event: any) {

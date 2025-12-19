@@ -5,7 +5,7 @@
     <div class="container nav-container">
       <!-- الشعار -->
       <a class="logo" routerLink="/">
-        <img src="assets/images/redseaRemove1.png" alt="Logo" />
+        <img [src]="homeService.Logo()" alt="Logo" />
       </a>
   
       <!-- القائمة في الوسط -->
@@ -110,8 +110,8 @@
 
   <!-- Social Icons in Offcanvas -->
   <div class="offcanvas-social">
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a [href]="homeService.FacebookLink()" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a [href]="homeService.TiktokLink()"target="_blank"><i class="fab fa-twitter"></i></a>
+    <a [href]="homeService.InstagramLink()"target="_blank"><i class="fab fa-instagram"></i></a>
   </div>
 </div>

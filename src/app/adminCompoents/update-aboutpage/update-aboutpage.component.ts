@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -16,8 +17,10 @@ import { Subscription } from 'rxjs';
 })
 export class UpdateAboutpageComponent implements OnInit ,OnDestroy {
 
-  private readonly toasterService=inject(ToastrService)
+  private readonly toasterService=inject(ToastrService);
+  private readonly router=inject(Router);
   DataSUbs:WritableSignal<Subscription|null>=signal(null);
+
 
 
   aboutForm: FormGroup;
@@ -75,6 +78,7 @@ export class UpdateAboutpageComponent implements OnInit ,OnDestroy {
       next: res => {
         this.toasterService.success('About Page Updated Successfully', 'Update Success');
         this.loadAboutPage();
+        this.router.navigate(['/admin/tours']);
         this.selectedFile = null;
       },
       error: err => {

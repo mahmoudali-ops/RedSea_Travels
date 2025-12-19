@@ -9,30 +9,18 @@
   
     <!-- Carousel inner -->
     <div class="carousel-inner" >
-      <div class="carousel-item active" data-bs-interval="2000">
-        <img src="assets/images/pyrmaids.jpg" class="d-block w-100 carousel-image" alt="Giza Pyrmaids 1">
-        <div class="carousel-caption left-bottom animated-caption">
-          <h1 class="brand-name">RedSea Touren</h1>
-          <p class="brand-subtitle">Erstaunliche Reisen </p>
-        </div>
-      </div> 
 
-    <div class="carousel-inner" >
-      <div class="carousel-item" data-bs-interval="2000">
-        <img src="assets/images/musem2.jpg" class="d-block w-100 carousel-image" alt="Museum 1">
-        <div class="carousel-caption left-bottom animated-caption">
-          <h1 class="brand-name">RedSea Touren</h1>
-          <p class="brand-subtitle">Entdecke dein nächstes Abenteuer</p>
+      @for (image of HomepgeContent()?.mainImgs; track image.id) {
+        <div class="carousel-item active" data-bs-interval="4500">
+          <img [src]="image.imageCover" class="d-block w-100 carousel-image" alt="Giza Pyrmaids 1">
+          <div class="carousel-caption left-bottom animated-caption">
+            <h1 class="brand-name">{{image.title}}</h1>
+            <p class="brand-subtitle">{{image.description}} </p>
+          </div>
         </div>
-      </div>
-  
-      <div class="carousel-item" data-bs-interval="2000">
-        <img src="assets/images/musem.jpg" class="d-block w-100 carousel-image" alt="Museum 2">
-        <div class="carousel-caption left-bottom animated-caption">
-          <h1 class="brand-name">RedSea Touren</h1>
-          <p class="brand-subtitle">Erkunde die Wunder Ägyptens</p>
-        </div>
-      </div>
+      }
+    
+
     </div>
   </div>
   
@@ -268,4 +256,3 @@ autoplay-disable-on-interaction="false"
 
 </div>
   
-<app-client-footer></app-client-footer>  

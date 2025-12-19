@@ -276,7 +276,40 @@
               }
             </div>
 
+            
+              <div class="form-group mb-3 col-half">
+                <label class="form-label">
+                  <i class="fas fa-user"></i> Hotel Name
+                </label>
+                <input 
+                  [ngClass]="{
+                    'is-invalid': BookingForm.get('HotelName')?.invalid && (BookingForm.get('HotelName')?.touched || BookingForm.get('HotelName')?.dirty),
+                    'is-valid': BookingForm.get('HotelName')?.valid && (BookingForm.get('HotelName')?.touched || BookingForm.get('HotelName')?.dirty)
+                  }"
+                  type="text" 
+                  class="form-control" 
+                  formControlName="HotelName"
+                >
+              </div> 
+            
+              <div class="form-group mb-3 col-half">
+                <label class="form-label">
+                  <i class="fas fa-child"></i> Room Number
+                </label>
+                <input 
+                  [ngClass]="{
+                    'is-invalid': BookingForm.get('RoomNumber')?.invalid && (BookingForm.get('RoomNumber')?.touched || BookingForm.get('RoomNumber')?.dirty),
+                    'is-valid': BookingForm.get('RoomNumber')?.valid && (BookingForm.get('RoomNumber')?.touched || BookingForm.get('RoomNumber')?.dirty)
+                  }"
+                  type="number" 
+                  class="form-control" 
+                  formControlName="RoomNumber"
+                >
+        
+              </div>
+
             <div class="row two-cols">
+
 
               <div class="form-group mb-3 col-half">
                 <label class="form-label">

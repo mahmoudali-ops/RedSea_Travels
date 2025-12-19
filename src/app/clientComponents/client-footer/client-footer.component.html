@@ -5,7 +5,7 @@
       <!-- Logo & About -->
       <div class="footer-col about">
         <h6 class="fw-bold mb-3">
-          <img src="assets/images/redseaRemove.png" alt="Logo" height="50" class="me-2">
+          <img [src]="homeService.Logo()" alt="Logo" height="50" class="me-2">
           Red Sea Travels
         </h6>
         <p>
@@ -38,10 +38,9 @@
         <p><i class="fas fa-envelope me-2"></i> support myshop.com</p>
         <p><i class="fas fa-phone me-2"></i> +20 100 123 4567</p>
         <div class="social-icons mt-3">
-          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
-          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
-          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
-          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+          <a [href]="homeService.FacebookLink()" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
+          <a [href]="homeService.InstagramLink()" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+          <a [href]="homeService.TiktokLink()" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
         </div>
       </div>
 

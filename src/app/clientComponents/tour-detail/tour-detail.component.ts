@@ -41,6 +41,8 @@ export class TOurDetailComponent implements OnInit, OnDestroy {
       BookingDate:['', Validators.required],
       AdultsNumber:[1, Validators.required],
       ChildernNumber:[0, Validators.required],
+      HotelName:[''],
+      RoomNumber:[1], 
       FK_TourId:[''],
       FullTourName:['']
     });
