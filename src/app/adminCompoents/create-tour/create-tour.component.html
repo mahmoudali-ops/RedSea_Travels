@@ -122,22 +122,51 @@
   
       <!-- Category / Destination IDs -->
       <div class="row g-2">
+        <!-- Category -->
         <div class="col-6">
           <div class="form-group mb-3">
-            <label class="form-label"><i class="fas fa-folder"></i> Category ID</label>
-            <input type="number" class="form-control" formControlName="fkCategoryId" placeholder="Category ID" />
+            <label class="form-label">
+              <i class="fas fa-folder"></i> Category
+            </label>
+      
+            <select class="form-control" formControlName="fkCategoryId">
+              <option value="">-- Select Category --</option>
+              <option *ngFor="let cat of categories" [value]="cat.id">
+                {{ cat.name }}
+              </option>
+            </select>
+      
+            <div class="text-danger small mt-1"
+                 *ngIf="tourForm.get('fkCategoryId')?.invalid &&
+                        (tourForm.get('fkCategoryId')?.touched || tourForm.get('fkCategoryId')?.dirty)">
+              Category is required.
+            </div>
           </div>
         </div>
+      
+        <!-- Destination -->
         <div class="col-6">
           <div class="form-group mb-3">
-            <label class="form-label"><i class="fas fa-map-pin"></i> Destination ID</label>
-            <input type="number" class="form-control" formControlName="fkDestinationId" placeholder="Destination ID" />
-            <div class="text-danger small mt-1" *ngIf="tourForm.get('fkDestinationId')?.invalid && (tourForm.get('fkDestinationId')?.touched || tourForm.get('fkDestinationId')?.dirty)">
-              Destination ID is required.
+            <label class="form-label">
+              <i class="fas fa-map-pin"></i> Destination
+            </label>
+      
+            <select class="form-control" formControlName="fkDestinationId">
+              <option value="">-- Select Destination --</option>
+              <option *ngFor="let dest of destinations" [value]="dest.id">
+                {{ dest.name }}
+              </option>
+            </select>
+      
+            <div class="text-danger small mt-1"
+                 *ngIf="tourForm.get('fkDestinationId')?.invalid &&
+                        (tourForm.get('fkDestinationId')?.touched || tourForm.get('fkDestinationId')?.dirty)">
+              Destination is required.
             </div>
           </div>
         </div>
       </div>
+      
   
       <!-- Active Checkbox -->
       <div class="form-group mb-3">

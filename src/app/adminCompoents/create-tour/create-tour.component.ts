@@ -15,7 +15,22 @@ import { CommonModule, NgClass } from '@angular/common';
 export class CreateTourComponent {
   private readonly toaster = inject(ToastrService);
   private readonly router = inject(Router);
-
+  destinations = [
+    { id: 8, name: 'Marsa Alam' },
+    { id: 9, name: 'Hurghada' }
+  ];
+categories = [
+  { id: 5, name: 'Cairo Tours Marsa Alam' },
+  { id: 6, name: 'Luxor Tours Marsa Alam' },
+  { id: 7, name: 'Sea Tours Marsa Alam' },
+  { id: 8, name: 'Safari Tours Marsa Alam' },
+  { id: 9, name: 'Things To Do In Marsa Alam' },
+  { id: 10, name: 'Luxor Tours Hurghada' },
+  { id: 11, name: 'Sea Tours Hurghada' },
+  { id: 12, name: 'Safari Tours Hurghada' },
+  { id: 13, name: 'Things To Do In Hurghada' },
+  { id: 14, name: 'Cairo Tours Hurghada' }
+];
   tourForm: FormGroup;
   selectedFile: File | null = null;
   imagePreview: string | ArrayBuffer | null = null;
