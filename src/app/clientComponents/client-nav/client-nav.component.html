@@ -44,9 +44,9 @@
   
       <!-- Social Icons على اليمين s-->
       <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a [href]="homeService.FacebookLink()" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a [href]="homeService.TiktokLink()"target="_blank"><i class="fab fa-twitter"></i></a>
+        <a [href]="homeService.InstagramLink()"target="_blank"><i class="fab fa-instagram"></i></a>
       </div>
       <button class="hamburger-btn" (click)="toggleOffcanvas()" [class.active]="isOffcanvasOpen">
         <span></span>
