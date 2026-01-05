@@ -85,9 +85,9 @@ categories = [
   }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.loadTour(id);
+    const slug = this.route.snapshot.paramMap.get('slug');
+    if (slug) {
+      this.loadTour(slug);
     }
   }
 
@@ -99,8 +99,8 @@ categories = [
 
   // ========== Load Tour ==========
 // ========== Load Tour ==========
-loadTour(id: number) {
-  this.tourService.getDetaildedTOur(id).subscribe({
+loadTour(slug: string) {
+  this.tourService.getDetaildedTOur(slug).subscribe({
     next: (tour: any) => {
       console.log('Tour data loaded:', tour); // للتأكد من البيانات القادمة
       

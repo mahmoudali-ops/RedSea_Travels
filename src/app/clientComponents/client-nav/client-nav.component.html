@@ -16,11 +16,11 @@
           <a class="nav-link dropdown-toggle">Hurghada Touren</a>
         
           <ul class="dropdown-menu">
-            <li><a [routerLink]="['/categrytourDetail', 14]">Kairo Touren</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 10]">Luxor Touren</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 12]">Safari Touren</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 11]">Meer Touren</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 13]">Aktivitäten in Hurghada</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'cairo-tours-hurghada']">Kairo Touren</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'luxor-tours-hurghada']">Luxor Touren</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'safari-tours-hurghada']">Safari Touren</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'sea-tours-hurghada']">Meer Touren</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'things-to-do-in-hurghada']">Aktivitäten in Hurghada</a></li>
             
           </ul>
         </li>
@@ -28,11 +28,11 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle">Marsa Alam Touren</a>
 <ul class="dropdown-menu">
-  <li><a [routerLink]="['/categrytourDetail', 5]">Kairo Touren</a></li>
-  <li><a [routerLink]="['/categrytourDetail', 6]">Luxor Touren</a></li>
-  <li><a [routerLink]="['/categrytourDetail', 8]">Safari Touren</a></li>
-  <li><a [routerLink]="['/categrytourDetail', 7]">Meer Touren</a></li>
-  <li><a [routerLink]="['/categrytourDetail', 9]">Aktivitäten in Hurghada</a></li>
+  <li><a [routerLink]="['/categrytourDetail', 'cairo-tours-marsa-alam']">Kairo Touren</a></li>
+  <li><a [routerLink]="['/categrytourDetail', 'luxor-tours-marsa-alam']">Luxor Touren</a></li>
+  <li><a [routerLink]="['/categrytourDetail', 'safari-tours-marsa-alam']">Safari Touren</a></li>
+  <li><a [routerLink]="['/categrytourDetail', 'sea-tours-marsa-alam']">Meer Touren</a></li>
+  <li><a [routerLink]="['/categrytourDetail', 'things-to-do-in-marsa-alam']">Aktivitäten in Hurghada</a></li>
 </ul>
 
         </li>
@@ -80,11 +80,11 @@
         <i class="fas fa-chevron-down"></i>
       </a>
       <ul class="dropdown-submenu" [class.open]="activeDropdown === 'hurghada'">
-        <li><a [routerLink]="['/categrytourDetail', 14]" (click)="closeOffcanvas()">Kairo Touren</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 10]" (click)="closeOffcanvas()">Luxor Touren</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 12]" (click)="closeOffcanvas()">Safari Touren</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 11]" (click)="closeOffcanvas()">Sea Touren</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 13]" (click)="closeOffcanvas()">Aktivitäten in Hurghada</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'cairo-tours-hurghada']" (click)="closeOffcanvas()">Kairo Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'luxor-tours-hurghada']" (click)="closeOffcanvas()">Luxor Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'safari-tours-hurghada']" (click)="closeOffcanvas()">Safari Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'sea-tours-hurghada']" (click)="closeOffcanvas()">Sea Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'things-to-do-in-hurghada']" (click)="closeOffcanvas()">Aktivitäten in Hurghada</a></li>
       </ul>
     </li>
 
@@ -95,11 +95,11 @@
         <i class="fas fa-chevron-down"></i>
       </a>
       <ul class="dropdown-submenu" [class.open]="activeDropdown === 'marsa'">
-        <li><a [routerLink]="['/categrytourDetail', 5]" (click)="closeOffcanvas()">Kairo Touren</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 6]" (click)="closeOffcanvas()">Luxor Touren</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 8]" (click)="closeOffcanvas()">Safari Touren</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 7]" (click)="closeOffcanvas()">Sea Touren</a></li>
-        <li><a [routerLink]="['/categrytourDetail', 9]" (click)="closeOffcanvas()">Aktivitäten in Hurghada</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'cairo-tours-marsa-alam']" (click)="closeOffcanvas()">Kairo Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'luxor-tours-marsa-alam']" (click)="closeOffcanvas()">Luxor Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'safari-tours-marsa-alam']" (click)="closeOffcanvas()">Safari Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'sea-tours-marsa-alam']" (click)="closeOffcanvas()">Sea Touren</a></li>
+        <li><a [routerLink]="['/categrytourDetail', 'things-to-do-in-marsa-alam']" (click)="closeOffcanvas()">Aktivitäten in Hurghada</a></li>
       </ul>
     </li>
 

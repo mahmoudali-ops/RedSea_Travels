@@ -9,6 +9,8 @@ export interface ICatTour {
     metaKeyWords: string
     imageCover: string
     isActive: boolean
+    slug: string
+
 }
 
 export interface IdetailedCattour {
@@ -17,6 +19,7 @@ export interface IdetailedCattour {
     isActive: boolean
     title: string
     description: string
+    slug: string
     tours: ITour[]
   }
   

@@ -45,9 +45,9 @@ export const routes: Routes = [
             {path: 'home',component:HomeComponent,title: 'Home' },  
             {path: 'tour',component:ToursComponent,title: 'Tours' },
             {path: 'transfer',component:TransferComponent,title: 'Transfers' },
-            {path: 'tourDetail/:id',component:TOurDetailComponent,title: 'Tour Details' },
-            {path: 'transferDetail/:id',component:TransfersDetailComponent,title: 'Transfers Details' },
-            {path: 'categrytourDetail/:id',component:CategoryTourDetailComponent,title: 'Tours Category Details' },
+            {path: 'tourDetail/:slug',component:TOurDetailComponent,title: 'Tour Details' },
+            {path: 'transferDetail/:slug',component:TransfersDetailComponent,title: 'Transfers Details' },
+            {path: 'categrytourDetail/:slug',component:CategoryTourDetailComponent,title: 'Tours Category Details' },
             {path: 'faq',component:FaqComponent,title: 'FAQ' },
             {path: 'about',component:AboutComponent,title: 'About' },
             {path: 'services',component:ServicesComponent,title: 'Services' }
@@ -74,7 +74,7 @@ export const routes: Routes = [
       
           // CRUD Tours محمية بالـ guard
           { path: 'tourCreate', component: CreateTourComponent, title: 'Admin Create a Tour', canActivate: [authGuardGuard] },
-          { path: 'tourUpdate/:id', component: UpdateTourComponent, title: 'Admin Update a Tour', canActivate: [authGuardGuard] },
+          { path: 'tourUpdate/:slug', component: UpdateTourComponent, title: 'Admin Update a Tour', canActivate: [authGuardGuard] },
       
           // CRUD Destinations محمية بالـ guard
           { path: 'destnationCreate', component: CreateDestnaionsComponent, title: 'Admin Create a Destnation', canActivate: [authGuardGuard] },
@@ -82,7 +82,7 @@ export const routes: Routes = [
       
           // CRUD Category Tours محمية بالـ guard
           { path: 'catTourCreate', component: CreateCatTourComponent, title: 'Admin Create a Category Tour', canActivate: [authGuardGuard] },
-          { path: 'catTourUpdate/:id', component: UpdateCatTourComponent, title: 'Admin Update a Category Tour', canActivate: [authGuardGuard] },
+          { path: 'catTourUpdate/:slug', component: UpdateCatTourComponent, title: 'Admin Update a Category Tour', canActivate: [authGuardGuard] },
       
           // CRUD Transfers محمية بالـ guard
           { path: 'transferCreate', component: CreateTransferComponent, title: 'Admin Create a Transfer', canActivate: [authGuardGuard] },

@@ -19,6 +19,8 @@ export interface ITour {
   fK_DestinationID: number
   categoryName: string
   destinationName: string
+  slug: string
+
 }
 
 export interface IDetailedTour {
@@ -39,6 +41,7 @@ export interface IDetailedTour {
   title: string
   description: string
   linkVideo:string
+  slug: string
   tourImgs: ITourImg[]
   highlights: IHighlight[]
   includeds: IIncludedItem[]

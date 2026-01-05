@@ -111,7 +111,7 @@ autoplay-disable-on-interaction="false"
 
       @for (category of AllPopularHurghadaCat().slice(5,10); track category.id ) {
 
-        <swiper-slide [routerLink]="['/categrytourDetail', category.id]" class="pointer" >
+        <swiper-slide [routerLink]="['/categrytourDetail', category.slug]" class="pointer" >
           <div class="destination-card" >
             <img [src]="category.imageCover" [alt]="category.title">
             <div class="destination-overlay">
@@ -146,7 +146,7 @@ autoplay-disable-on-interaction="false"
       <div class="row">
         @for (tour of HurghadaTours.slice(0,8); track tour.id) {
           <div class="col-md-6 col-lg-3 mb-4" 
-          [routerLink]="['/tourDetail', tour.id]"
+          [routerLink]="['/tourDetail', tour.slug]"
                     >
             <div class="destination-card-new">
               <div class="destination-image-new">
@@ -178,7 +178,7 @@ autoplay-disable-on-interaction="false"
         </div>
         <div class="row">
           @for (tour of MarsaAlamTours; track tour.id) {
-            <div class="col-md-6 col-lg-3 mb-4" [routerLink]="['/tourDetail', tour.id]" >
+            <div class="col-md-6 col-lg-3 mb-4" [routerLink]="['/tourDetail', tour.slug]" >
               <div class="destination-card-new">
                 <div class="destination-image-new">
                   <img [src]="tour.imageCover" [alt]="tour.title" class="img-fluid">

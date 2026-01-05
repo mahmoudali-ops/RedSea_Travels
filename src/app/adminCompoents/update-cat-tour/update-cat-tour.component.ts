@@ -40,9 +40,9 @@ private readonly toasterService = inject(ToastrService);
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.CatTourService.getDetaildedCategorTour(id).subscribe(dest => {
+    const slug = this.route.snapshot.paramMap.get('slug');
+    if (slug) {
+      this.CatTourService.getDetaildedCategorTour(slug).subscribe(dest => {
   
         // خزّن الصورة القديمة فقط
         this.oldImageUrl = dest.imageCover;

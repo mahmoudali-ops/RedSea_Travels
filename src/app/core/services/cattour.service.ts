@@ -18,8 +18,8 @@ private readonly httpClient=inject(HttpClient);
       return this.httpClient.get(`${environment.BaseUrl}/api/CategorTour/admin`);
     }
 
-    getDetaildedCategorTour(id:number|null):Observable<any>{
-      return this.httpClient.get(`${environment.BaseUrl}/api/CategorTour/${id}`);
+    getDetaildedCategorTour(slug:string|null):Observable<any>{
+      return this.httpClient.get(`${environment.BaseUrl}/api/CategorTour/by-slug/${slug}`);
     }
 
     createCatTour(data:FormData):Observable<any>{

@@ -47,24 +47,17 @@ export class TOurDetailComponent implements OnInit, OnDestroy {
       FullTourName:['']
     });
 
-
-
-
-
-
-
-
     ngOnInit(): void {
   
       this.activeRouete.paramMap.subscribe({
         next:(p)=>{
-          let  id=Number(p.get('id'));
+          let slug=p.get('slug');
   
           // Must call API here
-         this.TourSubs.set( this.TourService.getDetaildedTOur(id).subscribe({
+         this.TourSubs.set( this.TourService.getDetaildedTOur(slug).subscribe({
               next:(res)=>{
                
-                console.log(res);
+                console.log("Data is : ",res);
                 this.DetailedTour.set(res);
               },
               error:(err:HttpErrorResponse)=>{

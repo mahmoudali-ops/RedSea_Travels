@@ -67,7 +67,7 @@
   
         <!-- Actions -->
         <div class="tour-col actions">
-          <button class="btn edit-btn" title="Edit" [routerLink]="['/admin/tourUpdate',tour.id]">
+          <button class="btn edit-btn" title="Edit" [routerLink]="['/admin/tourUpdate',tour.slug]">
             <i class="fa-solid fa-pen-to-square"></i>
           </button>
           <button class="btn delete-btn" title="Delete" (click)="deleteTour(tour.id)">

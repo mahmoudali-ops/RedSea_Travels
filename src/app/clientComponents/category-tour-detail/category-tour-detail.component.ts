@@ -31,10 +31,10 @@ if (isPlatformBrowser(this.platformId)) {
   }
       this.activeRouete.paramMap.subscribe({
         next:(p)=>{
-          let  id=Number(p.get('id'));
+          let  slug=p.get('slug');
   
           // Must call API here
-         this.CategorySubs.set( this.categoryService.getDetaildedCategorTour(id).subscribe({
+         this.CategorySubs.set( this.categoryService.getDetaildedCategorTour(slug).subscribe({
               next:(res)=>{
                
                 console.log(res);
