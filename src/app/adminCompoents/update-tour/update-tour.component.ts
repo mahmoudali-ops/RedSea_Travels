@@ -260,9 +260,17 @@ loadTour(slug: string) {
     this.galleryPreview.push('');
   }
 
-  removeImage(index: number) {
-    this.imagesList.removeAt(index);
-    this.galleryPreview.splice(index, 1);
+  removeImage(id: number) {
+ this.tourService.deleteImageTour(id).subscribe({
+      next: () => {
+        this.toaster.success('Image deleted successfully.');
+      },
+      error: () => {
+        this.toaster.error('Error deleting image.');
+        console.log('Error deleting image with id:', id);
+      }
+    });
+ 
   }
 
   addInclude() { this.includesList.push(this.fb.group({ Text: ['', Validators.required] })); }
@@ -319,8 +327,8 @@ loadTour(slug: string) {
 
     if (this.selectedFile) formData.append('ImageFile', this.selectedFile);
 
-    const tourId = Number(this.route.snapshot.paramMap.get('id'));
-    this.tourService.updateTour(tourId, formData).subscribe({
+    const slug = this.route.snapshot.paramMap.get('slug') ?? '';
+    this.tourService.updateTour(slug, formData).subscribe({
       next: () => {
         this.toaster.success('Tour updated successfully!');
         this.router.navigate(['/admin/tours']);

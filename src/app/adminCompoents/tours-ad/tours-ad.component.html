@@ -70,7 +70,7 @@
           <button class="btn edit-btn" title="Edit" [routerLink]="['/admin/tourUpdate',tour.slug]">
             <i class="fa-solid fa-pen-to-square"></i>
           </button>
-          <button class="btn delete-btn" title="Delete" (click)="deleteTour(tour.id)">
+          <button class="btn delete-btn" title="Delete" (click)="deleteTour(tour.slug)">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>

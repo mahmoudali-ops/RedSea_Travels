@@ -35,11 +35,15 @@ export class TourService {
   createTour(data:FormData):Observable<any>{
     return this.httpcleint.post(`${environment.BaseUrl}/api/Tours/create`,data);
   }
-  updateTour(id:number,data:FormData):Observable<any>{
-    return this.httpcleint.put(`${environment.BaseUrl}/api/Tours/update/${id}`,data);
+  updateTour(slug:string,data:FormData):Observable<any>{
+    return this.httpcleint.put(`${environment.BaseUrl}/api/Tours/update/${slug}`,data);
   }
   
-  deleteTour(id:number):Observable<any>{
-    return this.httpcleint.delete(`${environment.BaseUrl}/api/Tours/delete/${id}`);
+  deleteTour(slug:string):Observable<any>{
+    return this.httpcleint.delete(`${environment.BaseUrl}/api/Tours/delete/${slug}`);
+  }
+
+  deleteImageTour(id:number):Observable<any>{
+    return this.httpcleint.delete(`${environment.BaseUrl}/api/TourImg/delete/${id}`);
   }
 }

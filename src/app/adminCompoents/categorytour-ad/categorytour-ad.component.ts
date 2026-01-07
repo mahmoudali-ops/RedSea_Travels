@@ -43,7 +43,7 @@ export class CategorytourAdComponent implements OnInit,OnDestroy {
       }
     }
 
-   deleteCatTour(id: number) {
+   deleteCatTour(slug: string) {
          Swal.fire({
            title: 'Are you sure?',
            text: "You won't be able to revert this!",
@@ -55,7 +55,7 @@ export class CategorytourAdComponent implements OnInit,OnDestroy {
          }).then((result) => {
            if (result.isConfirmed) {
              // هنا نعمل الحذف من API
-             this.catTourService.deleteCatTour(id).subscribe({
+             this.catTourService.deleteCatTour(slug).subscribe({
                next: () => {
                  Swal.fire(
                    'Deleted!',
@@ -63,7 +63,7 @@ export class CategorytourAdComponent implements OnInit,OnDestroy {
                    'success'
                  );
                  // لو عندك جدول أو قائمة رحلات، اعمل تحديث للقائمة
-                 this.AllCAtegortTourList.set(this.AllCAtegortTourList().filter(d=>d.id!=id)); // مثال
+                 this.AllCAtegortTourList.set(this.AllCAtegortTourList().filter(d=>d.slug!=slug)); // مثال
                },
                error: () => {
                  Swal.fire(

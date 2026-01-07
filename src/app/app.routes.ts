@@ -36,6 +36,9 @@ import { authGuardGuard } from './core/guards/auth-guard.guard';
 import { UpdateAboutpageComponent } from './adminCompoents/update-aboutpage/update-aboutpage.component';
 import { UpdateHomepageComponent } from './adminCompoents/update-homepage/update-homepage.component';
 import { AboutComponent } from './clientComponents/about/about.component';
+import { BlogsComponent } from './clientComponents/blogs/blogs.component';
+import { HurghadablogsComponent } from './clientComponents/hurghadablogs/hurghadablogs.component';
+import { MarsaalamblogsComponent } from './clientComponents/marsaalamblogs/marsaalamblogs.component';
 
 export const routes: Routes = [
     {
@@ -48,7 +51,9 @@ export const routes: Routes = [
             {path: 'tourDetail/:slug',component:TOurDetailComponent,title: 'Tour Details' },
             {path: 'transferDetail/:slug',component:TransfersDetailComponent,title: 'Transfers Details' },
             {path: 'categrytourDetail/:slug',component:CategoryTourDetailComponent,title: 'Tours Category Details' },
-            {path: 'faq',component:FaqComponent,title: 'FAQ' },
+            {path: 'blogs',component:BlogsComponent,title: 'Blogs' },
+            {path: 'hurghdablogs',component:HurghadablogsComponent,title: 'Hurghada blogs' },
+            {path: 'marsaAlamblogs',component:MarsaalamblogsComponent,title: 'Marsa Alam blogs' },
             {path: 'about',component:AboutComponent,title: 'About' },
             {path: 'services',component:ServicesComponent,title: 'Services' }
         ] 

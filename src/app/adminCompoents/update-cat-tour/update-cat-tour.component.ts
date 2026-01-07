@@ -94,7 +94,7 @@ private readonly toasterService = inject(ToastrService);
       return
     };
 
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const slug = this.route.snapshot.paramMap.get('slug')??'';
     const formData = new FormData();
 
     // بيانات النصوص
@@ -107,10 +107,10 @@ private readonly toasterService = inject(ToastrService);
       formData.append('ImageFile', this.newImageFile);
     }
 
-    this.CatTourService.updateCatTour(id, formData).subscribe({
+    this.CatTourService.updateCatTour(slug, formData).subscribe({
       next: () => {
         this.toasterService.success("This Destination Updated Successfully", 'Update Sent');
-        this._router.navigate(['/admin/destnaions']);
+        this._router.navigate(['/admin/categorytour']);
 
       },
       error: () => {

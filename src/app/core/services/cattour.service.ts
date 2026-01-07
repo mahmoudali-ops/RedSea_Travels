@@ -25,11 +25,11 @@ private readonly httpClient=inject(HttpClient);
     createCatTour(data:FormData):Observable<any>{
       return this.httpClient.post(`${environment.BaseUrl}/api/CategorTour/create`,data);
     }
-    updateCatTour(id:number,data:FormData):Observable<any>{
-      return this.httpClient.put(`${environment.BaseUrl}/api/CategorTour/update/${id}`,data);
+    updateCatTour(slug:string,data:FormData):Observable<any>{
+      return this.httpClient.put(`${environment.BaseUrl}/api/CategorTour/update/${slug}`,data);
     }
     
-    deleteCatTour(id:number):Observable<any>{
-      return this.httpClient.delete(`${environment.BaseUrl}/api/CategorTour/delete/${id}`);
+    deleteCatTour(slug:string):Observable<any>{
+      return this.httpClient.delete(`${environment.BaseUrl}/api/CategorTour/delete/${slug}`);
     }
   }

@@ -71,7 +71,7 @@ export class ToursAdComponent implements  OnInit, OnDestroy {
   
       
   
-     deleteTour(id: number) {
+     deleteTour(slug: string) {
            Swal.fire({
              title: 'Are you sure?',
              text: "You won't be able to revert this!",
@@ -83,7 +83,7 @@ export class ToursAdComponent implements  OnInit, OnDestroy {
            }).then((result) => {
              if (result.isConfirmed) {
                // هنا نعمل الحذف من API
-               this.TourService.deleteTour(id).subscribe({
+               this.TourService.deleteTour(slug).subscribe({
                  next: () => {
                    Swal.fire(
                      'Deleted!',
@@ -91,7 +91,7 @@ export class ToursAdComponent implements  OnInit, OnDestroy {
                      'success'
                    );
                    // لو عندك جدول أو قائمة رحلات، اعمل تحديث للقائمة
-                   this.AllToursList.set(this.AllToursList().filter(d=>d.id!=id)); // مثال
+                   this.AllToursList.set(this.AllToursList().filter(d=>d.slug!=slug)); // مثال
                  },
                  error: () => {
                    Swal.fire(
