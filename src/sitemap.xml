@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home -->
+  <url>
+    <loc>https://www.redsea-tours.com/home</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Category Tours - Hurghada -->
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/cairo-tours-hurghada</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/luxor-tours-hurghada</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/safari-tours-hurghada</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/sea-tours-hurghada</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/things-to-do-in-hurghada</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Category Tours - Marsa Alam -->
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/cairo-tours-marsa-alam</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/luxor-tours-marsa-alam</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/safari-tours-marsa-alam</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/sea-tours-marsa-alam</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/categrytourDetail/things-to-do-in-marsa-alam</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Blogs -->
+  <url>
+    <loc>https://www.redsea-tours.com/blogs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/hurghdablogs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.redsea-tours.com/marsaAlamblogs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://www.redsea-tours.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

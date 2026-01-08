@@ -22,7 +22,13 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "sitemap.xml",
+                "input": "src",
+                "output": "/",
+                "ignore": []
+              } 
             ],
             "styles": [
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
@@ -93,7 +99,13 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "sitemap.xml",
+                "input": "src",
+                "output": "/",
+                "ignore": []
+              } 
             ],
             "styles": [
               "src/styles.css"
