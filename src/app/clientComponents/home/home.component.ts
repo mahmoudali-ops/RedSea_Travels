@@ -14,6 +14,7 @@ import { isPlatformBrowser, NgClass } from '@angular/common';
 import { ClientFooterComponent } from '../client-footer/client-footer.component';
 import { HomeService } from '../../core/services/home.service';
 import { IHome } from '../../adminCompoents/update-homepage/update-homepage.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 register();
 
@@ -34,6 +35,10 @@ export class HomeComponent implements  OnInit {
   private readonly TourService=inject(TourService);
   private readonly CattourService=inject(CattourService)
   private readonly router=inject(Router);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+
+
 
   HomepgeContent:WritableSignal<IHome|null>=signal(null); 
   HomeSubs:WritableSignal<Subscription|null>=signal(null);
@@ -51,11 +56,27 @@ export class HomeComponent implements  OnInit {
   AllPopularHurghadaCat:WritableSignal<ICatTour[]>=signal([]);  
   HurghdadaCatSbss:WritableSignal<Subscription|null>=signal(null);
 
-  
+  LoadSeoData():void{
+    this.title.setTitle(
+      'RedSea Tours | Best Red Sea Excursions & Egypt Travel Experiences'
+    );
+
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'RedSea Tours offers unforgettable Red Sea excursions, Hurghada tours, Marsa Alam adventures, island trips, snorkeling, diving, and desert safaris across Egypt with trusted local guides.'
+    });
+
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'RedSea Tours, Red Sea excursions, Hurghada tours, Marsa Alam tours, Egypt travel agency, snorkeling Red Sea, diving Egypt, desert safari Egypt, island trips Red Sea'
+    });
+  }
 
   ngOnInit(): void {
     this.LoadHomepageContent();
-   
+   this.LoadSeoData();
  
     this.TourSUbs.set( this.TourService.getAllTours().subscribe({
        next:(res)=>{

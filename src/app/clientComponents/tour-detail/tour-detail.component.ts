@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { IDetailedTour } from '../../core/interfaces/itour';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap, takeUntil } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { TourService } from '../../core/services/tour.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular
 import { NgClass } from "@angular/common";
 import { ToastrService } from 'ngx-toastr';
 import { SafeUrlPipe } from '../../core/pipes/safe-url.pipe';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tour-detail',
@@ -32,6 +32,9 @@ export class TOurDetailComponent implements OnInit, OnDestroy {
     private readonly activeRouete=inject(ActivatedRoute);
     private readonly _formBuilder=inject(FormBuilder);
     private readonly toasterService=inject(ToastrService)
+    private readonly metaService = inject(Meta);
+    private readonly titleService = inject(Title);
+
 
   
     BookingForm:FormGroup=this._formBuilder.group({
@@ -47,8 +50,91 @@ export class TOurDetailComponent implements OnInit, OnDestroy {
       FullTourName:['']
     });
 
+
+    private loadData(): void {
+      this.activeRouete.paramMap
+        .pipe(
+          switchMap(params => {
+            const slug = params.get('slug') ?? '';
+    
+            // 🔹 Fallback title (قبل ما الداتا تيجي)
+            const formattedTitle = slug.replace(/-/g, ' ');
+            this.titleService.setTitle(`${formattedTitle} | RedSea Tours`);
+    
+            return this.TourService.getDetaildedTOur(slug);
+          })
+        )
+        .subscribe({
+          next: (res: IDetailedTour) => {
+            this.DetailedTour.set(res);
+    
+            /* ===============================
+               🔥 Dynamic SEO Starts Here
+            =============================== */
+    
+            // 🔹 Title (محسّن SEO)
+            this.titleService.setTitle(
+              `${res.title} | ${res.destinationName} Tours & Excursions | RedSea Tours`
+            );
+    
+            // 🔹 Clear old meta (مهم في SPA)
+            this.metaService.removeTag("name='description'");
+            this.metaService.removeTag("name='keywords'");
+    
+            // 🔹 Meta Description (بيع + بحث)
+            this.metaService.updateTag({
+              name: 'description',
+              content:
+                res.metaDescription ||
+                `Book ${res.title} in ${res.destinationName} with RedSea Tours. Enjoy unforgettable Red Sea excursions, island trips, snorkeling, and desert adventures in Egypt.`
+            });
+    
+            // 🔹 Meta Keywords (نظيفة ومش Spam)
+            this.metaService.updateTag({
+              name: 'keywords',
+              content:
+                res.metaKeyWords ||
+                `${res.title}, ${res.destinationName} tours, Red Sea excursions, Egypt tours, snorkeling ${res.destinationName}, RedSea Tours`
+            });
+    
+            // 🔹 Open Graph (SEO + Social Media)
+            this.metaService.updateTag({
+              property: 'og:title',
+              content: `${res.title} | ${res.destinationName} Tours | RedSea Tours`
+            });
+    
+            this.metaService.updateTag({
+              property: 'og:description',
+              content:
+                res.metaDescription ||
+                `Experience ${res.title} in ${res.destinationName} with RedSea Tours – trusted local guides and unforgettable adventures in Egypt.`
+            });
+    
+            this.metaService.updateTag({
+              property: 'og:image',
+              content: res.imageCover
+            });
+    
+            this.metaService.updateTag({
+              property: 'og:type',
+              content: 'article'
+            });
+    
+            this.metaService.updateTag({
+              property: 'og:url',
+              content: `https://redseatours.com/tours/${res.slug}`
+            });
+    
+            /* ===============================
+               🔥 End Dynamic SEO
+            =============================== */
+          },
+          error: (err: any) => console.error(err)
+        });
+    }
+    
     ngOnInit(): void {
-  
+  this.loadData();
       this.activeRouete.paramMap.subscribe({
         next:(p)=>{
           let slug=p.get('slug');
@@ -57,7 +143,6 @@ export class TOurDetailComponent implements OnInit, OnDestroy {
          this.TourSubs.set( this.TourService.getDetaildedTOur(slug).subscribe({
               next:(res)=>{
                
-                console.log("Data is : ",res);
                 this.DetailedTour.set(res);
               },
               error:(err:HttpErrorResponse)=>{

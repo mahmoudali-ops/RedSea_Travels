@@ -42,6 +42,8 @@ export interface IDetailedTour {
   description: string
   linkVideo:string
   slug: string
+  metaKeyWords:string
+  metaDescription:string
   tourImgs: ITourImg[]
   highlights: IHighlight[]
   includeds: IIncludedItem[]

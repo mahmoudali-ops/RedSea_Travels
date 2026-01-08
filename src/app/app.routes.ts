@@ -45,17 +45,16 @@ export const routes: Routes = [
         path: '',component:ClientLayoutComponent,
         children:[
             {path: '',redirectTo: 'home',pathMatch: 'full' },
-            {path: 'home',component:HomeComponent,title: 'Home' },  
-            {path: 'tour',component:ToursComponent,title: 'Tours' },
-            {path: 'transfer',component:TransferComponent,title: 'Transfers' },
-            {path: 'tourDetail/:slug',component:TOurDetailComponent,title: 'Tour Details' },
-            {path: 'transferDetail/:slug',component:TransfersDetailComponent,title: 'Transfers Details' },
-            {path: 'categrytourDetail/:slug',component:CategoryTourDetailComponent,title: 'Tours Category Details' },
-            {path: 'blogs',component:BlogsComponent,title: 'Blogs' },
-            {path: 'hurghdablogs',component:HurghadablogsComponent,title: 'Hurghada blogs' },
-            {path: 'marsaAlamblogs',component:MarsaalamblogsComponent,title: 'Marsa Alam blogs' },
-            {path: 'about',component:AboutComponent,title: 'About' },
-            {path: 'services',component:ServicesComponent,title: 'Services' }
+            {path: 'home',component:HomeComponent },  
+            {path: 'tour',component:ToursComponent },
+            {path: 'transfer',component:TransferComponent },
+            {path: 'tourDetail/:slug',component:TOurDetailComponent },
+            {path: 'transferDetail/:slug',component:TransfersDetailComponent },
+            {path: 'categrytourDetail/:slug',component:CategoryTourDetailComponent },
+            {path: 'blogs',component:BlogsComponent },
+            {path: 'hurghdablogs',component:HurghadablogsComponent },
+            {path: 'marsaAlamblogs',component:MarsaalamblogsComponent },
+            {path: 'about',component:AboutComponent },
         ] 
     },
     {

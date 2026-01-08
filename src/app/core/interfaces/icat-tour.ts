@@ -20,6 +20,8 @@ export interface IdetailedCattour {
     title: string
     description: string
     slug: string
+    metaDescription: string
+    metaKeyWords: string
     tours: ITour[]
   }
   
