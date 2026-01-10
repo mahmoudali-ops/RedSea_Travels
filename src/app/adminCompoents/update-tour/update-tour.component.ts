@@ -260,18 +260,26 @@ loadTour(slug: string) {
     this.galleryPreview.push('');
   }
 
-  removeImage(id: number) {
- this.tourService.deleteImageTour(id).subscribe({
-      next: () => {
-        this.toaster.success('Image deleted successfully.');
-      },
-      error: () => {
-        this.toaster.error('Error deleting image.');
-        console.log('Error deleting image with id:', id);
-      }
-    });
- 
+  removeImage(index: number) {
+    const imgId = this.imagesList.at(index).get('id')?.value;
+  
+    // لو صورة قديمة (من DB)
+    if (imgId && imgId > 0) {
+      this.tourService.deleteImageTour(imgId).subscribe({
+        next: () => {
+          this.toaster.success('Image deleted successfully.');
+        },
+        error: () => {
+          this.toaster.error('Error deleting image.');
+        }
+      });
+    }
+  
+    // إزالة من الفورم والـ UI
+    this.imagesList.removeAt(index);
+    this.galleryPreview.splice(index, 1);
   }
+  
 
   addInclude() { this.includesList.push(this.fb.group({ Text: ['', Validators.required] })); }
   removeInclude(i: number) { this.includesList.removeAt(i); }

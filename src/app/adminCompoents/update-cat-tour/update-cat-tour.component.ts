@@ -115,7 +115,7 @@ private readonly toasterService = inject(ToastrService);
       },
       error: () => {
         this.toasterService.error(
-          "There was an error updating the destination. Please try again later.",
+          "There was an error updating the Category tour. Please try again later.",
           'Update Error'
         );
       }
