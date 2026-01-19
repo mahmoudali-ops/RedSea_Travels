@@ -10,7 +10,7 @@ body.nav-light .main-nav .social-icons a:hover {
   color: #444 !important;
 }
  
-/* مع السحب يرجع للوضع الغامق */
+/*  مع السحب يرجع للوضع الغامق */
 body.nav-light .main-nav.scrolled .nav-links a,
 body.nav-light .main-nav.scrolled .logo,
 body.nav-light .main-nav.scrolled .social-icons a {
