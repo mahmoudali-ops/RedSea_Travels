@@ -69,7 +69,7 @@
             </div>
           </div>
 
-          <button class="btn about-btn mt-3">Mehr über uns</button>
+          <button routerLink="/about" class="btn about-btn mt-3">Mehr über uns</button>
           
         </div>
       </div>
@@ -127,7 +127,7 @@ autoplay-disable-on-interaction="false"
     </swiper-container>
 
     <div class="text-center mt-4">
-      <button routerLink="/categrytourDetail/14" class="btn btn-outline-primary">Alle Reiseziele entdecken  </button>
+      <button [routerLink]="['/categrytourDetail', 'sea-tours-hurghada']" class="btn btn-outline-primary">Alle Reiseziele entdecken  </button>
     </div>
   </div>
 </section>
@@ -163,7 +163,7 @@ autoplay-disable-on-interaction="false"
         
       </div>
       <div class="text-center mt-4">
-        <button routerLink="/categrytourDetail/14" class="btn btn-outline-primary">Alle Reiseziele entdecken</button>
+        <button [routerLink]="['/categrytourDetail', 'things-to-do-in-hurghada']" class="btn btn-outline-primary">Alle Reiseziele entdecken</button>
       </div>
     </div>
   </section>
@@ -194,7 +194,7 @@ autoplay-disable-on-interaction="false"
           
         </div>
         <div class="text-center mt-4">
-          <button routerLink="/categrytourDetail/5" class="btn btn-outline-primary">Alle Reiseziele entdecken</button>
+          <button [routerLink]="['/categrytourDetail', 'things-to-do-in-marsa-alam']" class="btn btn-outline-primary">Alle Reiseziele entdecken</button>
         </div>
       </div>
     </section>
