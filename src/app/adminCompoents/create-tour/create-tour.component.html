@@ -1,8 +1,8 @@
 <div class="form-wrapper">
     <!-- ===== Error Summary Box ===== -->
 <div *ngIf="errorSummary.length > 0" class="error-summary">
-    <h4>يرجى مراجعة الآتي:</h4>
-    <ul>
+  <h4>Please review the following:</h4>
+  <ul>
       <li *ngFor="let err of errorSummary">{{ err }}</li>
     </ul>
   </div>

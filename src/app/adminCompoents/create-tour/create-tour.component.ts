@@ -210,38 +210,38 @@ categories = [
   
     for (let key in controls) {
       const control = controls[key];
-  
+    
       if (control.errors) {
         if (control.errors['required']) {
-          this.errorSummary.push(`حقل (${key}) مطلوب.`);
+          this.errorSummary.push(`The field (${key}) is required.`);
         }
-  
+    
         if (control.errors['minlength']) {
           this.errorSummary.push(
-            `حقل (${key}) يجب أن يحتوي على ${control.errors['minlength'].requiredLength} أحرف على الأقل.`
+            `The field (${key}) must contain at least ${control.errors['minlength'].requiredLength} characters.`
           );
         }
-  
+    
         if (control.errors['maxlength']) {
           this.errorSummary.push(
-            `حقل (${key}) يجب ألا يتجاوز ${control.errors['maxlength'].requiredLength} حرف.`
+            `The field (${key}) must not exceed ${control.errors['maxlength'].requiredLength} characters.`
           );
         }
-  
+    
         if (control.errors['email']) {
-          this.errorSummary.push(`صيغة البريد الإلكتروني في (${key}) غير صحيحة.`);
+          this.errorSummary.push(`The email format in (${key}) is invalid.`);
         }
       }
     }
-  
+    
     /* For FormArray fields like Includes, Gallery etc */
     if (this.includesList.invalid) {
-      this.errorSummary.push(`لا بد من إدخال كل عناصر قسم (Includes).`);
+      this.errorSummary.push(`All items in the Includes section must be filled in.`);
     }
-  
+    
     if (this.imagesList.invalid) {
-      this.errorSummary.push(`برجاء التأكد من رفع كل الصور المطلوبة.`); 
+      this.errorSummary.push(`Please make sure all required images are uploaded.`);
     }
-  }
+    
   
-}
+}}

@@ -353,10 +353,14 @@ loadTour(slug: string) {
     for (let key in controls) {
       const control = controls[key];
       if (control.errors) {
-        if (control.errors['required']) this.errorSummary.push(`حقل (${key}) مطلوب.`);
+        if (control.errors['required']) this.errorSummary.push(`Field (${key}) is required.`);
       }
     }
-    if (this.includesList.invalid) this.errorSummary.push(`لا بد من إدخال كل عناصر قسم (Includes).`);
-    if (this.imagesList.invalid) this.errorSummary.push(`برجاء التأكد من رفع كل الصور المطلوبة.`);
+    if (this.includesList.invalid)
+      this.errorSummary.push(`All items in the Includes section must be filled in.`);
+    
+    if (this.imagesList.invalid)
+      this.errorSummary.push(`Please make sure all required images are uploaded.`);
+    
   }
 }
